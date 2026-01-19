@@ -1,0 +1,57 @@
+**/vcpkg/
+vcpkg_installed/
+
+# ========================
+# Unity (Client)
+# ========================
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Mm]emoryCaptures/
+/[Uu]ser[Ss]ettings/
+
+# Visual Studio generated files (Unity makes these too)
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.opendb
+*.VC.db
+
+# Unity3D generated meta files
+*.pidb.meta
+*.pdb.meta
+*.mdb.meta
+
+# ========================
+# Visual Studio C++ (Server)
+# ========================
+.vs/
+x64/
+x86/
+Debug/
+Release/
+*.sdf
+*.opensdf
+*.tlog
+*.log
+*.idb
+*.ipch
+[Bb]in/
+[Oo]bj/
+
+# ========================
+# OS Generated
+# ========================
+.DS_Store
+Thumbs.db

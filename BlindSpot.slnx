@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="BlindSpotServer/BlindSpotServer.vcxproj" Id="9c122ff3-ec4f-4cbe-b2fd-b316f4137e4e" />
+</Solution>

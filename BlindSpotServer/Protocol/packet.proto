@@ -1,0 +1,17 @@
+syntax = "proto3";
+package blindspot;
+
+enum PacketID {
+    ID_NONE = 0;
+    ID_LOGIN_REQUEST = 1;
+    ID_LOGIN_RESPONSE = 2;
+}
+message LoginRequest {
+  int32 id = 1;
+  string name = 2;
+}
+
+message LoginResponse {
+    bool success = 1;
+    string message = 2;
+}
