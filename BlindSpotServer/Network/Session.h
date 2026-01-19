@@ -5,8 +5,10 @@
 #include "../Game/PlayerManager.h"
 #include "../Protocol/packet.pb.h"
 #include "../Game/ServerPacketHandler.h"
-
+#include "../Game/GameRoom.h"
 using boost::asio::ip::tcp;
+
+class GameRoom;
 
 struct PacketHeader {
     uint16_t length;
@@ -16,7 +18,7 @@ struct PacketHeader {
 class Session : public std::enable_shared_from_this<Session> {
 public:
     Session(tcp::socket socket) : socket_(std::move(socket)) {}
-
+    std::weak_ptr<GameRoom> room;
     void Start() {
         GPlayerManager.Add(shared_from_this());
         DoRead();

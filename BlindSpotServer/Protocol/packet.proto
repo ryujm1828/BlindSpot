@@ -5,13 +5,32 @@ enum PacketID {
     ID_NONE = 0;
     ID_LOGIN_REQUEST = 1;
     ID_LOGIN_RESPONSE = 2;
+    ID_JOIN_ROOM_REQUEST = 3;
+    ID_JOIN_ROOM_RESPONSE = 4;
 }
 message LoginRequest {
   int32 id = 1;
   string name = 2;
 }
 
+message JoinRoomRequest {
+    int32 room_id = 1;
+}
+
 message LoginResponse {
     bool success = 1;
     string message = 2;
+}
+
+enum JoinRoomResult {
+    SUCCESS = 0;
+    ROOM_FULL = 1;
+    ROOM_NOT_FOUND = 2;
+    ALREADY_IN_ROOM = 3;
+}
+
+message JoinRoomResponse {
+    JoinRoomResult result = 1;
+    int32 room_id = 2;
+    // 방에 있는 다른 플레이어 목록 정보 등을 담을 수도 있음
 }

@@ -28,7 +28,7 @@ public:
 
 	void Add(uint32_t room_id, std::shared_ptr<GameRoom> room);
 	std::shared_ptr<GameRoom> GetOrCreateRoom(int room_id);
-	std::shared_ptr<GameRoom> GetRoom(int room_id);
+	std::shared_ptr<GameRoom> GetRoomById(int room_id);
 
 private:
 	std::mutex mutex_;

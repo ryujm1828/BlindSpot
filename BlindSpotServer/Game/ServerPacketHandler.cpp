@@ -1,5 +1,6 @@
 #include "ServerPacketHandler.h"
 #include "../Network/Session.h"
+#include "./GameRoom.h"
 
 PacketFunc ServerPacketHandler::packet_handlers_[UINT16_MAX] = { nullptr };
 
@@ -16,7 +17,12 @@ void ServerPacketHandler::Init() {
 			Handle_LOGIN_REQUEST(session, pkt);
 		}
 	};
-	// 다른 패킷 핸들러도 여기에 등록
+	packet_handlers_[blindspot::PacketID::ID_JOIN_ROOM_REQUEST] = [](std::shared_ptr<Session> session, uint8_t* payload, uint16_t size) {
+		blindspot::JoinRoomRequest pkt;
+		if (pkt.ParseFromArray(payload, size)) {
+			Handle_JOIN_ROOM_REQUEST(session, pkt);
+		}
+	};
 }
 
 // Dispatch packet to appropriate handler based on packet ID
@@ -43,5 +49,28 @@ void ServerPacketHandler::Handle_LOGIN_REQUEST(std::shared_ptr<Session> session,
 }
 
 void ServerPacketHandler::Handle_JOIN_ROOM_REQUEST(std::shared_ptr<Session> session, blindspot::JoinRoomRequest& pkt) {
+	if (session->room.lock()) {
+		// Already in a room
+		blindspot::JoinRoomResponse res;
+		res.set_result(blindspot::ALREADY_IN_ROOM);
+		session->Send(blindspot::PacketID::ID_JOIN_ROOM_RESPONSE, res);
+		return;
+	}
+	int32_t room_Id = pkt.room_id();
+	auto room = RoomManager::Instance().GetRoomById(room_Id);
+	if (room == nullptr){
+		room = std::make_shared<GameRoom>();
+		RoomManager::Instance().Add(room_Id, room);
+	}
 	
+	room->Enter(session);
+	session->room = room;
+
+	blindspot::JoinRoomResponse res;
+	res.set_result(blindspot::SUCCESS);
+	res.set_room_id(room_Id);
+
+	session->Send(blindspot::PacketID::ID_JOIN_ROOM_RESPONSE, res);
+
+	std::cout << "[Room] Player joined room ID: " << room_Id << std::endl;
 }

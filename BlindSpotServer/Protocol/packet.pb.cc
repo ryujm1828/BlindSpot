@@ -81,8 +81,59 @@ struct LoginRequestDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 LoginRequestDefaultTypeInternal _LoginRequest_default_instance_;
+
+inline constexpr JoinRoomResponse::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : result_{static_cast< ::blindspot::JoinRoomResult >(0)},
+        room_id_{0},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR JoinRoomResponse::JoinRoomResponse(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct JoinRoomResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR JoinRoomResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~JoinRoomResponseDefaultTypeInternal() {}
+  union {
+    JoinRoomResponse _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 JoinRoomResponseDefaultTypeInternal _JoinRoomResponse_default_instance_;
+
+inline constexpr JoinRoomRequest::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : room_id_{0},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR JoinRoomRequest::JoinRoomRequest(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct JoinRoomRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR JoinRoomRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~JoinRoomRequestDefaultTypeInternal() {}
+  union {
+    JoinRoomRequest _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 JoinRoomRequestDefaultTypeInternal _JoinRoomRequest_default_instance_;
 }  // namespace blindspot
-static const ::_pb::EnumDescriptor* file_level_enum_descriptors_packet_2eproto[1];
+static const ::_pb::EnumDescriptor* file_level_enum_descriptors_packet_2eproto[2];
 static constexpr const ::_pb::ServiceDescriptor**
     file_level_service_descriptors_packet_2eproto = nullptr;
 const ::uint32_t
@@ -99,6 +150,15 @@ const ::uint32_t
         PROTOBUF_FIELD_OFFSET(::blindspot::LoginRequest, _impl_.id_),
         PROTOBUF_FIELD_OFFSET(::blindspot::LoginRequest, _impl_.name_),
         ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::blindspot::JoinRoomRequest, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::blindspot::JoinRoomRequest, _impl_.room_id_),
+        ~0u,  // no _has_bits_
         PROTOBUF_FIELD_OFFSET(::blindspot::LoginResponse, _internal_metadata_),
         ~0u,  // no _extensions_
         ~0u,  // no _oneof_case_
@@ -108,36 +168,57 @@ const ::uint32_t
         ~0u,  // no sizeof(Split)
         PROTOBUF_FIELD_OFFSET(::blindspot::LoginResponse, _impl_.success_),
         PROTOBUF_FIELD_OFFSET(::blindspot::LoginResponse, _impl_.message_),
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::blindspot::JoinRoomResponse, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::blindspot::JoinRoomResponse, _impl_.result_),
+        PROTOBUF_FIELD_OFFSET(::blindspot::JoinRoomResponse, _impl_.room_id_),
 };
 
 static const ::_pbi::MigrationSchema
     schemas[] ABSL_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
         {0, -1, -1, sizeof(::blindspot::LoginRequest)},
-        {10, -1, -1, sizeof(::blindspot::LoginResponse)},
+        {10, -1, -1, sizeof(::blindspot::JoinRoomRequest)},
+        {19, -1, -1, sizeof(::blindspot::LoginResponse)},
+        {29, -1, -1, sizeof(::blindspot::JoinRoomResponse)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
     &::blindspot::_LoginRequest_default_instance_._instance,
+    &::blindspot::_JoinRoomRequest_default_instance_._instance,
     &::blindspot::_LoginResponse_default_instance_._instance,
+    &::blindspot::_JoinRoomResponse_default_instance_._instance,
 };
 const char descriptor_table_protodef_packet_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
     "\n\014packet.proto\022\tblindspot\"(\n\014LoginReques"
-    "t\022\n\n\002id\030\001 \001(\005\022\014\n\004name\030\002 \001(\t\"1\n\rLoginResp"
-    "onse\022\017\n\007success\030\001 \001(\010\022\017\n\007message\030\002 \001(\t*D"
-    "\n\010PacketID\022\013\n\007ID_NONE\020\000\022\024\n\020ID_LOGIN_REQU"
-    "EST\020\001\022\025\n\021ID_LOGIN_RESPONSE\020\002b\006proto3"
+    "t\022\n\n\002id\030\001 \001(\005\022\014\n\004name\030\002 \001(\t\"\"\n\017JoinRoomR"
+    "equest\022\017\n\007room_id\030\001 \001(\005\"1\n\rLoginResponse"
+    "\022\017\n\007success\030\001 \001(\010\022\017\n\007message\030\002 \001(\t\"N\n\020Jo"
+    "inRoomResponse\022)\n\006result\030\001 \001(\0162\031.blindsp"
+    "ot.JoinRoomResult\022\017\n\007room_id\030\002 \001(\005*y\n\010Pa"
+    "cketID\022\013\n\007ID_NONE\020\000\022\024\n\020ID_LOGIN_REQUEST\020"
+    "\001\022\025\n\021ID_LOGIN_RESPONSE\020\002\022\030\n\024ID_JOIN_ROOM"
+    "_REQUEST\020\003\022\031\n\025ID_JOIN_ROOM_RESPONSE\020\004*U\n"
+    "\016JoinRoomResult\022\013\n\007SUCCESS\020\000\022\r\n\tROOM_FUL"
+    "L\020\001\022\022\n\016ROOM_NOT_FOUND\020\002\022\023\n\017ALREADY_IN_RO"
+    "OM\020\003b\006proto3"
 };
 static ::absl::once_flag descriptor_table_packet_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_packet_2eproto = {
     false,
     false,
-    196,
+    452,
     descriptor_table_protodef_packet_2eproto,
     "packet.proto",
     &descriptor_table_packet_2eproto_once,
     nullptr,
     0,
-    2,
+    4,
     schemas,
     file_default_instances,
     TableStruct_packet_2eproto::offsets,
@@ -150,9 +231,18 @@ const ::google::protobuf::EnumDescriptor* PacketID_descriptor() {
   return file_level_enum_descriptors_packet_2eproto[0];
 }
 PROTOBUF_CONSTINIT const uint32_t PacketID_internal_data_[] = {
-    196608u, 0u, };
+    327680u, 0u, };
 bool PacketID_IsValid(int value) {
-  return 0 <= value && value <= 2;
+  return 0 <= value && value <= 4;
+}
+const ::google::protobuf::EnumDescriptor* JoinRoomResult_descriptor() {
+  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_packet_2eproto);
+  return file_level_enum_descriptors_packet_2eproto[1];
+}
+PROTOBUF_CONSTINIT const uint32_t JoinRoomResult_internal_data_[] = {
+    262144u, 0u, };
+bool JoinRoomResult_IsValid(int value) {
+  return 0 <= value && value <= 3;
 }
 // ===================================================================
 
@@ -413,6 +503,213 @@ void LoginRequest::InternalSwap(LoginRequest* PROTOBUF_RESTRICT other) {
 }
 // ===================================================================
 
+class JoinRoomRequest::_Internal {
+ public:
+};
+
+JoinRoomRequest::JoinRoomRequest(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:blindspot.JoinRoomRequest)
+}
+JoinRoomRequest::JoinRoomRequest(
+    ::google::protobuf::Arena* arena, const JoinRoomRequest& from)
+    : JoinRoomRequest(arena) {
+  MergeFrom(from);
+}
+inline PROTOBUF_NDEBUG_INLINE JoinRoomRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0} {}
+
+inline void JoinRoomRequest::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.room_id_ = {};
+}
+JoinRoomRequest::~JoinRoomRequest() {
+  // @@protoc_insertion_point(destructor:blindspot.JoinRoomRequest)
+  SharedDtor(*this);
+}
+inline void JoinRoomRequest::SharedDtor(MessageLite& self) {
+  JoinRoomRequest& this_ = static_cast<JoinRoomRequest&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.~Impl_();
+}
+
+inline void* JoinRoomRequest::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) JoinRoomRequest(arena);
+}
+constexpr auto JoinRoomRequest::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(JoinRoomRequest),
+                                            alignof(JoinRoomRequest));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull JoinRoomRequest::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_JoinRoomRequest_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &JoinRoomRequest::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<JoinRoomRequest>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &JoinRoomRequest::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<JoinRoomRequest>(), &JoinRoomRequest::ByteSizeLong,
+            &JoinRoomRequest::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(JoinRoomRequest, _impl_._cached_size_),
+        false,
+    },
+    &JoinRoomRequest::kDescriptorMethods,
+    &descriptor_table_packet_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* JoinRoomRequest::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 1, 0, 0, 2> JoinRoomRequest::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    1, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::blindspot::JoinRoomRequest>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // int32 room_id = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(JoinRoomRequest, _impl_.room_id_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(JoinRoomRequest, _impl_.room_id_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // int32 room_id = 1;
+    {PROTOBUF_FIELD_OFFSET(JoinRoomRequest, _impl_.room_id_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+
+PROTOBUF_NOINLINE void JoinRoomRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:blindspot.JoinRoomRequest)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.room_id_ = 0;
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::uint8_t* JoinRoomRequest::_InternalSerialize(
+            const MessageLite& base, ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) {
+          const JoinRoomRequest& this_ = static_cast<const JoinRoomRequest&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::uint8_t* JoinRoomRequest::_InternalSerialize(
+            ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+          const JoinRoomRequest& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(serialize_to_array_start:blindspot.JoinRoomRequest)
+          ::uint32_t cached_has_bits = 0;
+          (void)cached_has_bits;
+
+          // int32 room_id = 1;
+          if (this_._internal_room_id() != 0) {
+            target = ::google::protobuf::internal::WireFormatLite::
+                WriteInt32ToArrayWithField<1>(
+                    stream, this_._internal_room_id(), target);
+          }
+
+          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+            target =
+                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+          }
+          // @@protoc_insertion_point(serialize_to_array_end:blindspot.JoinRoomRequest)
+          return target;
+        }
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::size_t JoinRoomRequest::ByteSizeLong(const MessageLite& base) {
+          const JoinRoomRequest& this_ = static_cast<const JoinRoomRequest&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::size_t JoinRoomRequest::ByteSizeLong() const {
+          const JoinRoomRequest& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(message_byte_size_start:blindspot.JoinRoomRequest)
+          ::size_t total_size = 0;
+
+          ::uint32_t cached_has_bits = 0;
+          // Prevent compiler warnings about cached_has_bits being unused
+          (void)cached_has_bits;
+
+           {
+            // int32 room_id = 1;
+            if (this_._internal_room_id() != 0) {
+              total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+                  this_._internal_room_id());
+            }
+          }
+          return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                                     &this_._impl_._cached_size_);
+        }
+
+void JoinRoomRequest::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<JoinRoomRequest*>(&to_msg);
+  auto& from = static_cast<const JoinRoomRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:blindspot.JoinRoomRequest)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from._internal_room_id() != 0) {
+    _this->_impl_.room_id_ = from._impl_.room_id_;
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void JoinRoomRequest::CopyFrom(const JoinRoomRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:blindspot.JoinRoomRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void JoinRoomRequest::InternalSwap(JoinRoomRequest* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+        swap(_impl_.room_id_, other->_impl_.room_id_);
+}
+
+::google::protobuf::Metadata JoinRoomRequest::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
 class LoginResponse::_Internal {
  public:
 };
@@ -665,6 +962,247 @@ void LoginResponse::InternalSwap(LoginResponse* PROTOBUF_RESTRICT other) {
 }
 
 ::google::protobuf::Metadata LoginResponse::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class JoinRoomResponse::_Internal {
+ public:
+};
+
+JoinRoomResponse::JoinRoomResponse(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:blindspot.JoinRoomResponse)
+}
+JoinRoomResponse::JoinRoomResponse(
+    ::google::protobuf::Arena* arena, const JoinRoomResponse& from)
+    : JoinRoomResponse(arena) {
+  MergeFrom(from);
+}
+inline PROTOBUF_NDEBUG_INLINE JoinRoomResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0} {}
+
+inline void JoinRoomResponse::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, result_),
+           0,
+           offsetof(Impl_, room_id_) -
+               offsetof(Impl_, result_) +
+               sizeof(Impl_::room_id_));
+}
+JoinRoomResponse::~JoinRoomResponse() {
+  // @@protoc_insertion_point(destructor:blindspot.JoinRoomResponse)
+  SharedDtor(*this);
+}
+inline void JoinRoomResponse::SharedDtor(MessageLite& self) {
+  JoinRoomResponse& this_ = static_cast<JoinRoomResponse&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.~Impl_();
+}
+
+inline void* JoinRoomResponse::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) JoinRoomResponse(arena);
+}
+constexpr auto JoinRoomResponse::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(JoinRoomResponse),
+                                            alignof(JoinRoomResponse));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull JoinRoomResponse::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_JoinRoomResponse_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &JoinRoomResponse::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<JoinRoomResponse>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &JoinRoomResponse::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<JoinRoomResponse>(), &JoinRoomResponse::ByteSizeLong,
+            &JoinRoomResponse::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(JoinRoomResponse, _impl_._cached_size_),
+        false,
+    },
+    &JoinRoomResponse::kDescriptorMethods,
+    &descriptor_table_packet_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* JoinRoomResponse::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 0, 2> JoinRoomResponse::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::blindspot::JoinRoomResponse>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // int32 room_id = 2;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(JoinRoomResponse, _impl_.room_id_), 63>(),
+     {16, 63, 0, PROTOBUF_FIELD_OFFSET(JoinRoomResponse, _impl_.room_id_)}},
+    // .blindspot.JoinRoomResult result = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(JoinRoomResponse, _impl_.result_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(JoinRoomResponse, _impl_.result_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // .blindspot.JoinRoomResult result = 1;
+    {PROTOBUF_FIELD_OFFSET(JoinRoomResponse, _impl_.result_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
+    // int32 room_id = 2;
+    {PROTOBUF_FIELD_OFFSET(JoinRoomResponse, _impl_.room_id_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+
+PROTOBUF_NOINLINE void JoinRoomResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:blindspot.JoinRoomResponse)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ::memset(&_impl_.result_, 0, static_cast<::size_t>(
+      reinterpret_cast<char*>(&_impl_.room_id_) -
+      reinterpret_cast<char*>(&_impl_.result_)) + sizeof(_impl_.room_id_));
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::uint8_t* JoinRoomResponse::_InternalSerialize(
+            const MessageLite& base, ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) {
+          const JoinRoomResponse& this_ = static_cast<const JoinRoomResponse&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::uint8_t* JoinRoomResponse::_InternalSerialize(
+            ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+          const JoinRoomResponse& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(serialize_to_array_start:blindspot.JoinRoomResponse)
+          ::uint32_t cached_has_bits = 0;
+          (void)cached_has_bits;
+
+          // .blindspot.JoinRoomResult result = 1;
+          if (this_._internal_result() != 0) {
+            target = stream->EnsureSpace(target);
+            target = ::_pbi::WireFormatLite::WriteEnumToArray(
+                1, this_._internal_result(), target);
+          }
+
+          // int32 room_id = 2;
+          if (this_._internal_room_id() != 0) {
+            target = ::google::protobuf::internal::WireFormatLite::
+                WriteInt32ToArrayWithField<2>(
+                    stream, this_._internal_room_id(), target);
+          }
+
+          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+            target =
+                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+          }
+          // @@protoc_insertion_point(serialize_to_array_end:blindspot.JoinRoomResponse)
+          return target;
+        }
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::size_t JoinRoomResponse::ByteSizeLong(const MessageLite& base) {
+          const JoinRoomResponse& this_ = static_cast<const JoinRoomResponse&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::size_t JoinRoomResponse::ByteSizeLong() const {
+          const JoinRoomResponse& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(message_byte_size_start:blindspot.JoinRoomResponse)
+          ::size_t total_size = 0;
+
+          ::uint32_t cached_has_bits = 0;
+          // Prevent compiler warnings about cached_has_bits being unused
+          (void)cached_has_bits;
+
+          ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+           {
+            // .blindspot.JoinRoomResult result = 1;
+            if (this_._internal_result() != 0) {
+              total_size += 1 +
+                            ::_pbi::WireFormatLite::EnumSize(this_._internal_result());
+            }
+            // int32 room_id = 2;
+            if (this_._internal_room_id() != 0) {
+              total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+                  this_._internal_room_id());
+            }
+          }
+          return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                                     &this_._impl_._cached_size_);
+        }
+
+void JoinRoomResponse::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<JoinRoomResponse*>(&to_msg);
+  auto& from = static_cast<const JoinRoomResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:blindspot.JoinRoomResponse)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from._internal_result() != 0) {
+    _this->_impl_.result_ = from._impl_.result_;
+  }
+  if (from._internal_room_id() != 0) {
+    _this->_impl_.room_id_ = from._impl_.room_id_;
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void JoinRoomResponse::CopyFrom(const JoinRoomResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:blindspot.JoinRoomResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void JoinRoomResponse::InternalSwap(JoinRoomResponse* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(JoinRoomResponse, _impl_.room_id_)
+      + sizeof(JoinRoomResponse::_impl_.room_id_)
+      - PROTOBUF_FIELD_OFFSET(JoinRoomResponse, _impl_.result_)>(
+          reinterpret_cast<char*>(&_impl_.result_),
+          reinterpret_cast<char*>(&other->_impl_.result_));
+}
+
+::google::protobuf::Metadata JoinRoomResponse::GetMetadata() const {
   return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
 }
 // @@protoc_insertion_point(namespace_scope)

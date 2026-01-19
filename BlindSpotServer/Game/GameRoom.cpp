@@ -30,7 +30,7 @@ void RoomManager::Add(uint32_t roomId, std::shared_ptr<GameRoom> room) {
 	rooms_[roomId] = room;
 }
 
-std::shared_ptr<GameRoom> RoomManager::GetRoom(int roomId) {
+std::shared_ptr<GameRoom> RoomManager::GetRoomById(int roomId) {
 	std::lock_guard<std::mutex> lock(mutex_);
 	auto it = rooms_.find(roomId);
 
