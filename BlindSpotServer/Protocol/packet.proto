@@ -7,10 +7,12 @@ enum PacketID {
     ID_LOGIN_RESPONSE = 2;
     ID_JOIN_ROOM_REQUEST = 3;
     ID_JOIN_ROOM_RESPONSE = 4;
+    ID_MAKE_ROOM_REQUEST = 5;
+    ID_MAKE_ROOM_RESPONSE = 6;
 }
 message LoginRequest {
-  int32 id = 1;
-  string name = 2;
+  string name = 1;
+  string session_key = 2;  
 }
 
 message JoinRoomRequest {
@@ -19,18 +21,38 @@ message JoinRoomRequest {
 
 message LoginResponse {
     bool success = 1;
-    string message = 2;
+    int32 player_id = 2;
+    string session_key = 3;
+    string message = 4; // Optional message for additional info
 }
 
 enum JoinRoomResult {
-    SUCCESS = 0;
-    ROOM_FULL = 1;
-    ROOM_NOT_FOUND = 2;
-    ALREADY_IN_ROOM = 3;
+    JOIN_SUCCESS = 0;
+    JOIN_ROOM_FULL = 1;
+    JOIN_ROOM_NOT_FOUND = 2;
+    JOIN_ALREADY_IN_ROOM = 3;
 }
 
 message JoinRoomResponse {
     JoinRoomResult result = 1;
     int32 room_id = 2;
     // 방에 있는 다른 플레이어 목록 정보 등을 담을 수도 있음
+}
+
+enum MakeRoomResult {
+    MAKE_SUCCESS = 0;
+    MAKE_INVALID_PARAMETER = 1;
+    MAKE_SERVER_FULL = 2;
+    MAKE_ALREADY_IN_ROOM = 3;
+}
+
+message MakeRoomRequest {
+    string room_name = 1;
+    int32 max_players = 2;
+    string password = 3; // Optional password for private rooms
+}
+
+message MakeRoomResponse {
+    MakeRoomResult result = 1;
+    int32 room_id = 2;
 }

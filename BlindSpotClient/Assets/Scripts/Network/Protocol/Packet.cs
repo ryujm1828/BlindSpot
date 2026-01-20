@@ -24,24 +24,34 @@ namespace Blindspot {
     static PacketReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "CgxwYWNrZXQucHJvdG8SCWJsaW5kc3BvdCIoCgxMb2dpblJlcXVlc3QSCgoC",
-            "aWQYASABKAUSDAoEbmFtZRgCIAEoCSIiCg9Kb2luUm9vbVJlcXVlc3QSDwoH",
-            "cm9vbV9pZBgBIAEoBSIxCg1Mb2dpblJlc3BvbnNlEg8KB3N1Y2Nlc3MYASAB",
-            "KAgSDwoHbWVzc2FnZRgCIAEoCSJOChBKb2luUm9vbVJlc3BvbnNlEikKBnJl",
-            "c3VsdBgBIAEoDjIZLmJsaW5kc3BvdC5Kb2luUm9vbVJlc3VsdBIPCgdyb29t",
-            "X2lkGAIgASgFKnkKCFBhY2tldElEEgsKB0lEX05PTkUQABIUChBJRF9MT0dJ",
-            "Tl9SRVFVRVNUEAESFQoRSURfTE9HSU5fUkVTUE9OU0UQAhIYChRJRF9KT0lO",
-            "X1JPT01fUkVRVUVTVBADEhkKFUlEX0pPSU5fUk9PTV9SRVNQT05TRRAEKlUK",
-            "DkpvaW5Sb29tUmVzdWx0EgsKB1NVQ0NFU1MQABINCglST09NX0ZVTEwQARIS",
-            "Cg5ST09NX05PVF9GT1VORBACEhMKD0FMUkVBRFlfSU5fUk9PTRADYgZwcm90",
-            "bzM="));
+            "CgxwYWNrZXQucHJvdG8SCWJsaW5kc3BvdCIxCgxMb2dpblJlcXVlc3QSDAoE",
+            "bmFtZRgBIAEoCRITCgtzZXNzaW9uX2tleRgCIAEoCSIiCg9Kb2luUm9vbVJl",
+            "cXVlc3QSDwoHcm9vbV9pZBgBIAEoBSJZCg1Mb2dpblJlc3BvbnNlEg8KB3N1",
+            "Y2Nlc3MYASABKAgSEQoJcGxheWVyX2lkGAIgASgFEhMKC3Nlc3Npb25fa2V5",
+            "GAMgASgJEg8KB21lc3NhZ2UYBCABKAkiTgoQSm9pblJvb21SZXNwb25zZRIp",
+            "CgZyZXN1bHQYASABKA4yGS5ibGluZHNwb3QuSm9pblJvb21SZXN1bHQSDwoH",
+            "cm9vbV9pZBgCIAEoBSJLCg9NYWtlUm9vbVJlcXVlc3QSEQoJcm9vbV9uYW1l",
+            "GAEgASgJEhMKC21heF9wbGF5ZXJzGAIgASgFEhAKCHBhc3N3b3JkGAMgASgJ",
+            "Ik4KEE1ha2VSb29tUmVzcG9uc2USKQoGcmVzdWx0GAEgASgOMhkuYmxpbmRz",
+            "cG90Lk1ha2VSb29tUmVzdWx0Eg8KB3Jvb21faWQYAiABKAUqrgEKCFBhY2tl",
+            "dElEEgsKB0lEX05PTkUQABIUChBJRF9MT0dJTl9SRVFVRVNUEAESFQoRSURf",
+            "TE9HSU5fUkVTUE9OU0UQAhIYChRJRF9KT0lOX1JPT01fUkVRVUVTVBADEhkK",
+            "FUlEX0pPSU5fUk9PTV9SRVNQT05TRRAEEhgKFElEX01BS0VfUk9PTV9SRVFV",
+            "RVNUEAUSGQoVSURfTUFLRV9ST09NX1JFU1BPTlNFEAYqaQoOSm9pblJvb21S",
+            "ZXN1bHQSEAoMSk9JTl9TVUNDRVNTEAASEgoOSk9JTl9ST09NX0ZVTEwQARIX",
+            "ChNKT0lOX1JPT01fTk9UX0ZPVU5EEAISGAoUSk9JTl9BTFJFQURZX0lOX1JP",
+            "T00QAypuCg5NYWtlUm9vbVJlc3VsdBIQCgxNQUtFX1NVQ0NFU1MQABIaChZN",
+            "QUtFX0lOVkFMSURfUEFSQU1FVEVSEAESFAoQTUFLRV9TRVJWRVJfRlVMTBAC",
+            "EhgKFE1BS0VfQUxSRUFEWV9JTl9ST09NEANiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
-          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Blindspot.PacketID), typeof(global::Blindspot.JoinRoomResult), }, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Blindspot.LoginRequest), global::Blindspot.LoginRequest.Parser, new[]{ "Id", "Name" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Blindspot.PacketID), typeof(global::Blindspot.JoinRoomResult), typeof(global::Blindspot.MakeRoomResult), }, null, new pbr::GeneratedClrTypeInfo[] {
+            new pbr::GeneratedClrTypeInfo(typeof(global::Blindspot.LoginRequest), global::Blindspot.LoginRequest.Parser, new[]{ "Name", "SessionKey" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Blindspot.JoinRoomRequest), global::Blindspot.JoinRoomRequest.Parser, new[]{ "RoomId" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Blindspot.LoginResponse), global::Blindspot.LoginResponse.Parser, new[]{ "Success", "Message" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Blindspot.JoinRoomResponse), global::Blindspot.JoinRoomResponse.Parser, new[]{ "Result", "RoomId" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Blindspot.LoginResponse), global::Blindspot.LoginResponse.Parser, new[]{ "Success", "PlayerId", "SessionKey", "Message" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Blindspot.JoinRoomResponse), global::Blindspot.JoinRoomResponse.Parser, new[]{ "Result", "RoomId" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Blindspot.MakeRoomRequest), global::Blindspot.MakeRoomRequest.Parser, new[]{ "RoomName", "MaxPlayers", "Password" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Blindspot.MakeRoomResponse), global::Blindspot.MakeRoomResponse.Parser, new[]{ "Result", "RoomId" }, null, null, null, null)
           }));
     }
     #endregion
@@ -54,13 +64,22 @@ namespace Blindspot {
     [pbr::OriginalName("ID_LOGIN_RESPONSE")] IdLoginResponse = 2,
     [pbr::OriginalName("ID_JOIN_ROOM_REQUEST")] IdJoinRoomRequest = 3,
     [pbr::OriginalName("ID_JOIN_ROOM_RESPONSE")] IdJoinRoomResponse = 4,
+    [pbr::OriginalName("ID_MAKE_ROOM_REQUEST")] IdMakeRoomRequest = 5,
+    [pbr::OriginalName("ID_MAKE_ROOM_RESPONSE")] IdMakeRoomResponse = 6,
   }
 
   public enum JoinRoomResult {
-    [pbr::OriginalName("SUCCESS")] Success = 0,
-    [pbr::OriginalName("ROOM_FULL")] RoomFull = 1,
-    [pbr::OriginalName("ROOM_NOT_FOUND")] RoomNotFound = 2,
-    [pbr::OriginalName("ALREADY_IN_ROOM")] AlreadyInRoom = 3,
+    [pbr::OriginalName("JOIN_SUCCESS")] JoinSuccess = 0,
+    [pbr::OriginalName("JOIN_ROOM_FULL")] JoinRoomFull = 1,
+    [pbr::OriginalName("JOIN_ROOM_NOT_FOUND")] JoinRoomNotFound = 2,
+    [pbr::OriginalName("JOIN_ALREADY_IN_ROOM")] JoinAlreadyInRoom = 3,
+  }
+
+  public enum MakeRoomResult {
+    [pbr::OriginalName("MAKE_SUCCESS")] MakeSuccess = 0,
+    [pbr::OriginalName("MAKE_INVALID_PARAMETER")] MakeInvalidParameter = 1,
+    [pbr::OriginalName("MAKE_SERVER_FULL")] MakeServerFull = 2,
+    [pbr::OriginalName("MAKE_ALREADY_IN_ROOM")] MakeAlreadyInRoom = 3,
   }
 
   #endregion
@@ -101,8 +120,8 @@ namespace Blindspot {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public LoginRequest(LoginRequest other) : this() {
-      id_ = other.id_;
       name_ = other.name_;
+      sessionKey_ = other.sessionKey_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -112,20 +131,8 @@ namespace Blindspot {
       return new LoginRequest(this);
     }
 
-    /// <summary>Field number for the "id" field.</summary>
-    public const int IdFieldNumber = 1;
-    private int id_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int Id {
-      get { return id_; }
-      set {
-        id_ = value;
-      }
-    }
-
     /// <summary>Field number for the "name" field.</summary>
-    public const int NameFieldNumber = 2;
+    public const int NameFieldNumber = 1;
     private string name_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -133,6 +140,18 @@ namespace Blindspot {
       get { return name_; }
       set {
         name_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "session_key" field.</summary>
+    public const int SessionKeyFieldNumber = 2;
+    private string sessionKey_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string SessionKey {
+      get { return sessionKey_; }
+      set {
+        sessionKey_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
@@ -151,8 +170,8 @@ namespace Blindspot {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (Id != other.Id) return false;
       if (Name != other.Name) return false;
+      if (SessionKey != other.SessionKey) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -160,8 +179,8 @@ namespace Blindspot {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override int GetHashCode() {
       int hash = 1;
-      if (Id != 0) hash ^= Id.GetHashCode();
       if (Name.Length != 0) hash ^= Name.GetHashCode();
+      if (SessionKey.Length != 0) hash ^= SessionKey.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -180,13 +199,13 @@ namespace Blindspot {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (Id != 0) {
-        output.WriteRawTag(8);
-        output.WriteInt32(Id);
-      }
       if (Name.Length != 0) {
-        output.WriteRawTag(18);
+        output.WriteRawTag(10);
         output.WriteString(Name);
+      }
+      if (SessionKey.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(SessionKey);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -198,13 +217,13 @@ namespace Blindspot {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (Id != 0) {
-        output.WriteRawTag(8);
-        output.WriteInt32(Id);
-      }
       if (Name.Length != 0) {
-        output.WriteRawTag(18);
+        output.WriteRawTag(10);
         output.WriteString(Name);
+      }
+      if (SessionKey.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(SessionKey);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -216,11 +235,11 @@ namespace Blindspot {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CalculateSize() {
       int size = 0;
-      if (Id != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Id);
-      }
       if (Name.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Name);
+      }
+      if (SessionKey.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(SessionKey);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -234,11 +253,11 @@ namespace Blindspot {
       if (other == null) {
         return;
       }
-      if (other.Id != 0) {
-        Id = other.Id;
-      }
       if (other.Name.Length != 0) {
         Name = other.Name;
+      }
+      if (other.SessionKey.Length != 0) {
+        SessionKey = other.SessionKey;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -259,12 +278,12 @@ namespace Blindspot {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
-          case 8: {
-            Id = input.ReadInt32();
+          case 10: {
+            Name = input.ReadString();
             break;
           }
           case 18: {
-            Name = input.ReadString();
+            SessionKey = input.ReadString();
             break;
           }
         }
@@ -286,12 +305,12 @@ namespace Blindspot {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
-          case 8: {
-            Id = input.ReadInt32();
+          case 10: {
+            Name = input.ReadString();
             break;
           }
           case 18: {
-            Name = input.ReadString();
+            SessionKey = input.ReadString();
             break;
           }
         }
@@ -535,6 +554,8 @@ namespace Blindspot {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public LoginResponse(LoginResponse other) : this() {
       success_ = other.success_;
+      playerId_ = other.playerId_;
+      sessionKey_ = other.sessionKey_;
       message_ = other.message_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
@@ -557,9 +578,36 @@ namespace Blindspot {
       }
     }
 
+    /// <summary>Field number for the "player_id" field.</summary>
+    public const int PlayerIdFieldNumber = 2;
+    private int playerId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int PlayerId {
+      get { return playerId_; }
+      set {
+        playerId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "session_key" field.</summary>
+    public const int SessionKeyFieldNumber = 3;
+    private string sessionKey_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string SessionKey {
+      get { return sessionKey_; }
+      set {
+        sessionKey_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
     /// <summary>Field number for the "message" field.</summary>
-    public const int MessageFieldNumber = 2;
+    public const int MessageFieldNumber = 4;
     private string message_ = "";
+    /// <summary>
+    /// Optional message for additional info
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string Message {
@@ -585,6 +633,8 @@ namespace Blindspot {
         return true;
       }
       if (Success != other.Success) return false;
+      if (PlayerId != other.PlayerId) return false;
+      if (SessionKey != other.SessionKey) return false;
       if (Message != other.Message) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
@@ -594,6 +644,8 @@ namespace Blindspot {
     public override int GetHashCode() {
       int hash = 1;
       if (Success != false) hash ^= Success.GetHashCode();
+      if (PlayerId != 0) hash ^= PlayerId.GetHashCode();
+      if (SessionKey.Length != 0) hash ^= SessionKey.GetHashCode();
       if (Message.Length != 0) hash ^= Message.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -617,8 +669,16 @@ namespace Blindspot {
         output.WriteRawTag(8);
         output.WriteBool(Success);
       }
+      if (PlayerId != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(PlayerId);
+      }
+      if (SessionKey.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(SessionKey);
+      }
       if (Message.Length != 0) {
-        output.WriteRawTag(18);
+        output.WriteRawTag(34);
         output.WriteString(Message);
       }
       if (_unknownFields != null) {
@@ -635,8 +695,16 @@ namespace Blindspot {
         output.WriteRawTag(8);
         output.WriteBool(Success);
       }
+      if (PlayerId != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(PlayerId);
+      }
+      if (SessionKey.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(SessionKey);
+      }
       if (Message.Length != 0) {
-        output.WriteRawTag(18);
+        output.WriteRawTag(34);
         output.WriteString(Message);
       }
       if (_unknownFields != null) {
@@ -651,6 +719,12 @@ namespace Blindspot {
       int size = 0;
       if (Success != false) {
         size += 1 + 1;
+      }
+      if (PlayerId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(PlayerId);
+      }
+      if (SessionKey.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(SessionKey);
       }
       if (Message.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Message);
@@ -669,6 +743,12 @@ namespace Blindspot {
       }
       if (other.Success != false) {
         Success = other.Success;
+      }
+      if (other.PlayerId != 0) {
+        PlayerId = other.PlayerId;
+      }
+      if (other.SessionKey.Length != 0) {
+        SessionKey = other.SessionKey;
       }
       if (other.Message.Length != 0) {
         Message = other.Message;
@@ -696,7 +776,15 @@ namespace Blindspot {
             Success = input.ReadBool();
             break;
           }
-          case 18: {
+          case 16: {
+            PlayerId = input.ReadInt32();
+            break;
+          }
+          case 26: {
+            SessionKey = input.ReadString();
+            break;
+          }
+          case 34: {
             Message = input.ReadString();
             break;
           }
@@ -723,7 +811,15 @@ namespace Blindspot {
             Success = input.ReadBool();
             break;
           }
-          case 18: {
+          case 16: {
+            PlayerId = input.ReadInt32();
+            break;
+          }
+          case 26: {
+            SessionKey = input.ReadString();
+            break;
+          }
+          case 34: {
             Message = input.ReadString();
             break;
           }
@@ -782,7 +878,7 @@ namespace Blindspot {
 
     /// <summary>Field number for the "result" field.</summary>
     public const int ResultFieldNumber = 1;
-    private global::Blindspot.JoinRoomResult result_ = global::Blindspot.JoinRoomResult.Success;
+    private global::Blindspot.JoinRoomResult result_ = global::Blindspot.JoinRoomResult.JoinSuccess;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::Blindspot.JoinRoomResult Result {
@@ -831,7 +927,7 @@ namespace Blindspot {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override int GetHashCode() {
       int hash = 1;
-      if (Result != global::Blindspot.JoinRoomResult.Success) hash ^= Result.GetHashCode();
+      if (Result != global::Blindspot.JoinRoomResult.JoinSuccess) hash ^= Result.GetHashCode();
       if (RoomId != 0) hash ^= RoomId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -851,7 +947,7 @@ namespace Blindspot {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (Result != global::Blindspot.JoinRoomResult.Success) {
+      if (Result != global::Blindspot.JoinRoomResult.JoinSuccess) {
         output.WriteRawTag(8);
         output.WriteEnum((int) Result);
       }
@@ -869,7 +965,7 @@ namespace Blindspot {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (Result != global::Blindspot.JoinRoomResult.Success) {
+      if (Result != global::Blindspot.JoinRoomResult.JoinSuccess) {
         output.WriteRawTag(8);
         output.WriteEnum((int) Result);
       }
@@ -887,7 +983,7 @@ namespace Blindspot {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CalculateSize() {
       int size = 0;
-      if (Result != global::Blindspot.JoinRoomResult.Success) {
+      if (Result != global::Blindspot.JoinRoomResult.JoinSuccess) {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Result);
       }
       if (RoomId != 0) {
@@ -905,7 +1001,7 @@ namespace Blindspot {
       if (other == null) {
         return;
       }
-      if (other.Result != global::Blindspot.JoinRoomResult.Success) {
+      if (other.Result != global::Blindspot.JoinRoomResult.JoinSuccess) {
         Result = other.Result;
       }
       if (other.RoomId != 0) {
@@ -959,6 +1055,516 @@ namespace Blindspot {
             break;
           case 8: {
             Result = (global::Blindspot.JoinRoomResult) input.ReadEnum();
+            break;
+          }
+          case 16: {
+            RoomId = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class MakeRoomRequest : pb::IMessage<MakeRoomRequest>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<MakeRoomRequest> _parser = new pb::MessageParser<MakeRoomRequest>(() => new MakeRoomRequest());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<MakeRoomRequest> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Blindspot.PacketReflection.Descriptor.MessageTypes[4]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public MakeRoomRequest() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public MakeRoomRequest(MakeRoomRequest other) : this() {
+      roomName_ = other.roomName_;
+      maxPlayers_ = other.maxPlayers_;
+      password_ = other.password_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public MakeRoomRequest Clone() {
+      return new MakeRoomRequest(this);
+    }
+
+    /// <summary>Field number for the "room_name" field.</summary>
+    public const int RoomNameFieldNumber = 1;
+    private string roomName_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string RoomName {
+      get { return roomName_; }
+      set {
+        roomName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "max_players" field.</summary>
+    public const int MaxPlayersFieldNumber = 2;
+    private int maxPlayers_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int MaxPlayers {
+      get { return maxPlayers_; }
+      set {
+        maxPlayers_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "password" field.</summary>
+    public const int PasswordFieldNumber = 3;
+    private string password_ = "";
+    /// <summary>
+    /// Optional password for private rooms
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string Password {
+      get { return password_; }
+      set {
+        password_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as MakeRoomRequest);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(MakeRoomRequest other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (RoomName != other.RoomName) return false;
+      if (MaxPlayers != other.MaxPlayers) return false;
+      if (Password != other.Password) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (RoomName.Length != 0) hash ^= RoomName.GetHashCode();
+      if (MaxPlayers != 0) hash ^= MaxPlayers.GetHashCode();
+      if (Password.Length != 0) hash ^= Password.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (RoomName.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(RoomName);
+      }
+      if (MaxPlayers != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(MaxPlayers);
+      }
+      if (Password.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(Password);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (RoomName.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(RoomName);
+      }
+      if (MaxPlayers != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(MaxPlayers);
+      }
+      if (Password.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(Password);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (RoomName.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(RoomName);
+      }
+      if (MaxPlayers != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(MaxPlayers);
+      }
+      if (Password.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Password);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(MakeRoomRequest other) {
+      if (other == null) {
+        return;
+      }
+      if (other.RoomName.Length != 0) {
+        RoomName = other.RoomName;
+      }
+      if (other.MaxPlayers != 0) {
+        MaxPlayers = other.MaxPlayers;
+      }
+      if (other.Password.Length != 0) {
+        Password = other.Password;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            RoomName = input.ReadString();
+            break;
+          }
+          case 16: {
+            MaxPlayers = input.ReadInt32();
+            break;
+          }
+          case 26: {
+            Password = input.ReadString();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            RoomName = input.ReadString();
+            break;
+          }
+          case 16: {
+            MaxPlayers = input.ReadInt32();
+            break;
+          }
+          case 26: {
+            Password = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class MakeRoomResponse : pb::IMessage<MakeRoomResponse>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<MakeRoomResponse> _parser = new pb::MessageParser<MakeRoomResponse>(() => new MakeRoomResponse());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<MakeRoomResponse> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Blindspot.PacketReflection.Descriptor.MessageTypes[5]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public MakeRoomResponse() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public MakeRoomResponse(MakeRoomResponse other) : this() {
+      result_ = other.result_;
+      roomId_ = other.roomId_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public MakeRoomResponse Clone() {
+      return new MakeRoomResponse(this);
+    }
+
+    /// <summary>Field number for the "result" field.</summary>
+    public const int ResultFieldNumber = 1;
+    private global::Blindspot.MakeRoomResult result_ = global::Blindspot.MakeRoomResult.MakeSuccess;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::Blindspot.MakeRoomResult Result {
+      get { return result_; }
+      set {
+        result_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "room_id" field.</summary>
+    public const int RoomIdFieldNumber = 2;
+    private int roomId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int RoomId {
+      get { return roomId_; }
+      set {
+        roomId_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as MakeRoomResponse);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(MakeRoomResponse other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Result != other.Result) return false;
+      if (RoomId != other.RoomId) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Result != global::Blindspot.MakeRoomResult.MakeSuccess) hash ^= Result.GetHashCode();
+      if (RoomId != 0) hash ^= RoomId.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (Result != global::Blindspot.MakeRoomResult.MakeSuccess) {
+        output.WriteRawTag(8);
+        output.WriteEnum((int) Result);
+      }
+      if (RoomId != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(RoomId);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (Result != global::Blindspot.MakeRoomResult.MakeSuccess) {
+        output.WriteRawTag(8);
+        output.WriteEnum((int) Result);
+      }
+      if (RoomId != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(RoomId);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (Result != global::Blindspot.MakeRoomResult.MakeSuccess) {
+        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Result);
+      }
+      if (RoomId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(RoomId);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(MakeRoomResponse other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Result != global::Blindspot.MakeRoomResult.MakeSuccess) {
+        Result = other.Result;
+      }
+      if (other.RoomId != 0) {
+        RoomId = other.RoomId;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            Result = (global::Blindspot.MakeRoomResult) input.ReadEnum();
+            break;
+          }
+          case 16: {
+            RoomId = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 8: {
+            Result = (global::Blindspot.MakeRoomResult) input.ReadEnum();
             break;
           }
           case 16: {

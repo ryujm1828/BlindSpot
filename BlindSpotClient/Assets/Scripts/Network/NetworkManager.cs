@@ -43,10 +43,8 @@ public class NetworkManager : MonoBehaviour
 
             Debug.Log($"[Client] Connected to Server {ip}:{port}");
 
-            // 데이터 수신 대기 시작
             stream.BeginRead(recvBuffer, 0, recvBuffer.Length, new AsyncCallback(OnReceiveData), null);
-
-            // 접속하자마자 로그인 패킷 전송 (테스트용)
+            
             SendLoginPacket();
         }
         catch (Exception e)
@@ -55,7 +53,6 @@ public class NetworkManager : MonoBehaviour
         }
     }
 
-    // [수정됨] 콜백 함수 이름을 더 명확하게 변경했습니다.
     private void OnReceiveData(IAsyncResult ar)
     {
         try
@@ -68,35 +65,28 @@ public class NetworkManager : MonoBehaviour
                 return;
             }
 
-            // 받은 데이터를 조립 버퍼에 추가
+            //Add received data to assemble buffer
             byte[] temp = new byte[bytesRead];
             Array.Copy(recvBuffer, 0, temp, 0, bytesRead);
             assembleBuffer.AddRange(temp);
 
-            // 패킷 처리 루프
-            while (assembleBuffer.Count >= 4) // 헤더 크기(4) 이상일 때만
+            // Process complete packets
+            while (assembleBuffer.Count >= 4) 
             {
-                // 1. 패킷 전체 크기 확인 (Total Size)
                 ushort packetSize = BitConverter.ToUInt16(assembleBuffer.ToArray(), 0);
 
-                // 2. 데이터가 충분히 도착했는지 확인
                 if (assembleBuffer.Count < packetSize) break;
 
-                // 3. 패킷 ID 확인
                 ushort packetID = BitConverter.ToUInt16(assembleBuffer.ToArray(), 2);
 
-                // 4. 페이로드(내용물) 추출
                 byte[] payload = new byte[packetSize - 4];
                 Array.Copy(assembleBuffer.ToArray(), 4, payload, 0, payload.Length);
 
-                // 5. 패킷 처리 (함수 분리함)
                 HandlePacket((PacketID)packetID, payload);
 
-                // 6. 처리한 패킷 제거
                 assembleBuffer.RemoveRange(0, packetSize);
             }
 
-            // [중요!] 다시 수신 대기 (이게 없으면 한 번 받고 멈춤)
             stream.BeginRead(recvBuffer, 0, recvBuffer.Length, new AsyncCallback(OnReceiveData), null);
         }
         catch (Exception e)
@@ -106,7 +96,6 @@ public class NetworkManager : MonoBehaviour
         }
     }
 
-    // [추가됨] 패킷 처리 로직을 별도 함수로 뺐습니다.
     private void HandlePacket(PacketID id, byte[] payload)
     {
         switch (id)
@@ -115,17 +104,17 @@ public class NetworkManager : MonoBehaviour
                 {
                     LoginResponse pkt = LoginResponse.Parser.ParseFrom(payload);
                     Debug.Log($"[Server] Login Result: {pkt.Success}, Msg: {pkt.Message}");
+                    Debug.Log($"Session ID: {pkt.SessionKey}, PlayerId: {pkt.PlayerId}");
                 }
                 break;
 
-            // --- [추가된 부분] 방 입장 응답 처리 ---
+         
             case PacketID.IdJoinRoomResponse:
                 {
                     JoinRoomResponse pkt = JoinRoomResponse.Parser.ParseFrom(payload);
-                    if (pkt.Result == JoinRoomResult.Success)
+                    if (pkt.Result == JoinRoomResult.JoinSuccess)
                     {
                         Debug.Log($"[Server] 방 입장 성공! Room ID: {pkt.RoomId}");
-                        // 여기서 씬 이동 등을 처리 (주의: 메인 스레드 처리가 필요할 수 있음)
                     }
                     else
                     {
@@ -133,15 +122,25 @@ public class NetworkManager : MonoBehaviour
                     }
                 }
                 break;
-            // --------------------------------------
-
+            case PacketID.IdMakeRoomResponse:
+                {
+                    MakeRoomResponse pkt = MakeRoomResponse.Parser.ParseFrom(payload);
+                    if (pkt.Result == MakeRoomResult.MakeSuccess)
+                    {
+                        Debug.Log($"[Server] 방 생성 성공! Room ID: {pkt.RoomId}");
+                    }
+                    else
+                    {
+                        Debug.LogError($"[Server] 방 생성 실패");
+                    }
+                }
+                break;
             default:
                 Debug.LogWarning($"[Client] Unknown Packet ID: {id}");
                 break;
         }
     }
 
-    // 공용 전송 함수
     public void Send(PacketID id, IMessage packet)
     {
         if (client == null || !client.Connected) return;
@@ -160,7 +159,7 @@ public class NetworkManager : MonoBehaviour
             Array.Copy(payload, 0, sendBuffer, 4, payloadSize);
 
             stream.Write(sendBuffer, 0, sendBuffer.Length);
-            // Debug.Log($"[Client] Sent Packet ID: {id}"); // 로그가 너무 많으면 주석 처리
+            Debug.Log($"[Client] Sent Packet ID: {id}");
         }
         catch (Exception e)
         {
@@ -168,24 +167,30 @@ public class NetworkManager : MonoBehaviour
         }
     }
 
-    // --- [추가된 부분] 방 입장 요청 보내기 함수 ---
     public void SendJoinRoomPacket(int roomId)
     {
         JoinRoomRequest req = new JoinRoomRequest();
         req.RoomId = roomId;
-        // req.PlayerName은 Proto에서 뺐으므로 삭제
 
         Send(PacketID.IdJoinRoomRequest, req);
         Debug.Log($"[Client] Joining Room Request: {roomId}");
     }
-    // ------------------------------------------
 
     void SendLoginPacket()
     {
         LoginRequest loginPacket = new LoginRequest();
-        loginPacket.Id = 1001;
-        loginPacket.Name = "UnityPlayer";
+        loginPacket.Name = "UnityPlayer";   // Enter your desired player name
         Send(PacketID.IdLoginRequest, loginPacket);
+    }
+
+    public void SendMakeRoomPacket(string roomName,int maxPlayers, string password)
+    {
+        MakeRoomRequest req = new MakeRoomRequest();
+        req.RoomName = roomName;
+        req.MaxPlayers = maxPlayers;
+        req.Password = password;
+        Send(PacketID.IdMakeRoomRequest, req);
+        Debug.Log($"[Client] Making Room Request: {roomName}, MaxPlayers: {maxPlayers}");
     }
 
     void CloseConnection()

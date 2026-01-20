@@ -19,8 +19,11 @@ class Session : public std::enable_shared_from_this<Session> {
 public:
     Session(tcp::socket socket) : socket_(std::move(socket)) {}
     std::weak_ptr<GameRoom> room;
+    int32_t playerId;
+	std::string playerName;
+	std::string sessionKey;
     void Start() {
-        GPlayerManager.Add(shared_from_this());
+        PlayerManager::Instance().Add(shared_from_this());
         DoRead();
     }
     void Close() {
@@ -47,7 +50,7 @@ public:
             [this, self, send_buffer](boost::system::error_code ec, std::size_t /*length*/) {
                 if (ec) {
                     std::cout << "Send failed: " << ec.message() << std::endl;
-                    GPlayerManager.Remove(shared_from_this());
+					PlayerManager::Instance().Remove(shared_from_this());
                 }
             });
     }
@@ -86,7 +89,7 @@ private:
                 }
                 else {
                     std::cout << "Client Disconnected." << ec.message() << std::endl;
-                    GPlayerManager.Remove(shared_from_this());
+                    PlayerManager::Instance().Remove(shared_from_this());
                 }
             });
 
