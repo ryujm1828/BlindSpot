@@ -1,9 +1,12 @@
 using System;
+using System.Buffers;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Net.Sockets;
-using UnityEngine;
+using Blindspot;
 using Google.Protobuf;
-using Blindspot; // 프로토콜 네임스페이스
+using UnityEngine;
 
 public class NetworkManager : MonoBehaviour
 {
@@ -16,21 +19,79 @@ public class NetworkManager : MonoBehaviour
     public string ip = "127.0.0.1";
     public int port = 7777;
 
-    // 수신 버퍼
-    private byte[] recvBuffer = new byte[1024];
-    // 패킷 조립용 리스트
-    private List<byte> assembleBuffer = new List<byte>();
+    private const int Buffersize = 65535;   //max size of UDP packet
+    private const int MaxPacketID = 100;
+    private byte[] _recvBuffer = new byte[Buffersize];
+    private Action<byte[],int>[] _packetHandlers = new Action<byte[],int> [MaxPacketID]; // Assuming max 100 packet types
+
+    public struct PacketMessage
+    {
+        public PacketID Id;
+        public int Size;
+        public byte[] Payload;
+        
+        public PacketMessage(PacketID id, int size, byte[] payload)
+        {
+            Id = id;
+            Payload = payload;
+            Size = size;
+        }
+    }
+    private ConcurrentQueue<PacketMessage> _packetQueue = new ConcurrentQueue<PacketMessage>();
 
     void Awake()
     {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
         DontDestroyOnLoad(gameObject);
+        RegisterHandlers();
     }
 
     void Start()
     {
         ConnectToServer();
+    }
+
+    void Update()
+    {
+        while (_packetQueue.TryDequeue(out PacketMessage packet))
+        {
+            try
+            {
+                ProcessPacket(packet);
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"[Client] Packet Processing Error: {e.Message}");
+            }
+            finally
+            {
+                if(packet.Payload != null) 
+                    ArrayPool<byte>.Shared.Return(packet.Payload);
+            }
+        }
+    }
+
+    private void RegisterHandlers()
+    {
+        _packetHandlers[(int)PacketID.IdLoginResponse] = HandleLoginResponse;
+        _packetHandlers[(int)PacketID.IdJoinRoomResponse] = HandleJoinRoomResponse;
+        _packetHandlers[(int)PacketID.IdMakeRoomResponse] = HandleMakeRoomResponse;
+    }
+
+    private void ProcessPacket(PacketMessage packet)
+    {
+        int id = (int)packet.Id;
+        ReadOnlySpan<byte> payloadSpan = new ReadOnlySpan<byte>(packet.Payload, 0, packet.Size);
+
+        if (id >= 0 && id < _packetHandlers.Length && _packetHandlers[id] != null)
+        {
+            _packetHandlers[id](packet.Payload,packet.Size);
+        }
+        else
+        {
+            Debug.LogWarning($"[Client] No handler for Packet ID: {packet.Id}");
+        }
     }
 
     void ConnectToServer()
@@ -43,7 +104,7 @@ public class NetworkManager : MonoBehaviour
 
             Debug.Log($"[Client] Connected to Server {ip}:{port}");
 
-            stream.BeginRead(recvBuffer, 0, recvBuffer.Length, new AsyncCallback(OnReceiveData), null);
+            stream.BeginRead(_recvBuffer, 0, _recvBuffer.Length, new AsyncCallback(OnReceiveData), null);
             
             SendLoginPacket();
         }
@@ -53,41 +114,57 @@ public class NetworkManager : MonoBehaviour
         }
     }
 
+    private int _currentLength = 0;
+
     private void OnReceiveData(IAsyncResult ar)
     {
         try
         {
             int bytesRead = stream.EndRead(ar);
-            if (bytesRead <= 0)
+            if(bytesRead <= 0)
             {
-                Debug.Log("[Client] Disconnected from server.");
                 CloseConnection();
                 return;
             }
 
-            //Add received data to assemble buffer
-            byte[] temp = new byte[bytesRead];
-            Array.Copy(recvBuffer, 0, temp, 0, bytesRead);
-            assembleBuffer.AddRange(temp);
-
-            // Process complete packets
-            while (assembleBuffer.Count >= 4) 
+            _currentLength += bytesRead;
+            
+            int processOffset = 0;
+            while(_currentLength - processOffset >= 4) // Check for minimum header size
             {
-                ushort packetSize = BitConverter.ToUInt16(assembleBuffer.ToArray(), 0);
+                ushort packetSize = BitConverter.ToUInt16(_recvBuffer, processOffset);
+                if (packetSize < 4 || packetSize > Buffersize)
+                {
+                    Debug.LogError($"[Client] Invalid Packet Size: {packetSize}");
+                    // Modify to reconnect logic
+                    CloseConnection();
+                    return;
+                }
 
-                if (assembleBuffer.Count < packetSize) break;
-
-                ushort packetID = BitConverter.ToUInt16(assembleBuffer.ToArray(), 2);
-
-                byte[] payload = new byte[packetSize - 4];
-                Array.Copy(assembleBuffer.ToArray(), 4, payload, 0, payload.Length);
-
-                HandlePacket((PacketID)packetID, payload);
-
-                assembleBuffer.RemoveRange(0, packetSize);
+                if(_currentLength - processOffset >= packetSize) // Check if full packet is received
+                {
+                    ushort packetId = BitConverter.ToUInt16(_recvBuffer, processOffset + 2);
+                    int payloadSize = packetSize - 4;
+                    byte[] payload = ArrayPool<byte>.Shared.Rent(packetSize - 4);
+                    Array.Copy(_recvBuffer, processOffset + 4, payload, 0, payloadSize);
+                    HandlePacket((PacketID)packetId, payloadSize, payload);
+                    processOffset += packetSize; // Go to next packet
+                }
+                else
+                {
+                    break; // Wait for more data
+                }
             }
-
-            stream.BeginRead(recvBuffer, 0, recvBuffer.Length, new AsyncCallback(OnReceiveData), null);
+            if(processOffset > 0)
+            {
+                int remaining = _currentLength - processOffset;
+                if (remaining > 0)
+                {
+                    Buffer.BlockCopy(_recvBuffer, processOffset, _recvBuffer, 0, remaining);
+                }
+                _currentLength = remaining;
+            }
+            stream.BeginRead(_recvBuffer, _currentLength, _recvBuffer.Length - _currentLength, new AsyncCallback(OnReceiveData), null);
         }
         catch (Exception e)
         {
@@ -96,49 +173,9 @@ public class NetworkManager : MonoBehaviour
         }
     }
 
-    private void HandlePacket(PacketID id, byte[] payload)
+    private void HandlePacket(PacketID id, int size, byte[] payload)
     {
-        switch (id)
-        {
-            case PacketID.IdLoginResponse:
-                {
-                    LoginResponse pkt = LoginResponse.Parser.ParseFrom(payload);
-                    Debug.Log($"[Server] Login Result: {pkt.Success}, Msg: {pkt.Message}");
-                    Debug.Log($"Session ID: {pkt.SessionKey}, PlayerId: {pkt.PlayerId}");
-                }
-                break;
-
-         
-            case PacketID.IdJoinRoomResponse:
-                {
-                    JoinRoomResponse pkt = JoinRoomResponse.Parser.ParseFrom(payload);
-                    if (pkt.Result == JoinRoomResult.JoinSuccess)
-                    {
-                        Debug.Log($"[Server] 방 입장 성공! Room ID: {pkt.RoomId}");
-                    }
-                    else
-                    {
-                        Debug.LogError($"[Server] 방 입장 실패 코드: {pkt.Result}");
-                    }
-                }
-                break;
-            case PacketID.IdMakeRoomResponse:
-                {
-                    MakeRoomResponse pkt = MakeRoomResponse.Parser.ParseFrom(payload);
-                    if (pkt.Result == MakeRoomResult.MakeSuccess)
-                    {
-                        Debug.Log($"[Server] 방 생성 성공! Room ID: {pkt.RoomId}");
-                    }
-                    else
-                    {
-                        Debug.LogError($"[Server] 방 생성 실패");
-                    }
-                }
-                break;
-            default:
-                Debug.LogWarning($"[Client] Unknown Packet ID: {id}");
-                break;
-        }
+        _packetQueue.Enqueue(new PacketMessage(id, size, payload));
     }
 
     public void Send(PacketID id, IMessage packet)
@@ -199,9 +236,46 @@ public class NetworkManager : MonoBehaviour
         client?.Close();
         client = null;
     }
-
     void OnApplicationQuit()
     {
         CloseConnection();
     }
+
+    void HandleLoginResponse(byte[] payload,int size)
+    {
+        CodedInputStream stream = new CodedInputStream(payload, 0, size);
+        LoginResponse pkt = LoginResponse.Parser.ParseFrom(stream);
+        Debug.Log($"[Server] Login Result: {pkt.Success}, Msg: {pkt.Message}");
+        Debug.Log($"Session ID: {pkt.SessionKey}, PlayerId: {pkt.PlayerId}");
+    }
+
+    void HandleJoinRoomResponse(byte[] payload,int size)
+    {
+        CodedInputStream stream = new CodedInputStream(payload, 0, size);
+        JoinRoomResponse pkt = JoinRoomResponse.Parser.ParseFrom(stream);
+        if (pkt.Result == JoinRoomResult.JoinSuccess)
+        {
+            Debug.Log($"[Server] 방 입장 성공! Room ID: {pkt.RoomId}");
+        }
+        else
+        {
+            Debug.LogError($"[Server] 방 입장 실패 코드: {pkt.Result}");
+        }
+    }
+    
+    void HandleMakeRoomResponse(byte[] payload, int size)
+    {
+        CodedInputStream stream = new CodedInputStream(payload, 0, size);
+        MakeRoomResponse pkt = MakeRoomResponse.Parser.ParseFrom(stream);
+        if (pkt.Result == MakeRoomResult.MakeSuccess)
+        {
+            Debug.Log($"[Server] 방 생성 성공! Room ID: {pkt.RoomId}");
+        }
+        else
+        {
+            Debug.LogError($"[Server] 방 생성 실패");
+        }
+    }
+
+
 }
