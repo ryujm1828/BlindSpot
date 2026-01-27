@@ -1,0 +1,20 @@
+#include "../Network/Session.h"
+#include "SessionManager.h"
+
+SessionManager& SessionManager::Instance() {
+    static SessionManager instance;
+    return instance;
+}
+
+void SessionManager::Add(std::shared_ptr<Session> session) {
+    std::lock_guard<std::mutex> lock(sessions_mutex_);
+    sessions_.insert(session);
+    std::cout << "Player Joined. Current Players: " << sessions_.size() << std::endl;
+}
+
+void SessionManager::Remove(std::shared_ptr<Session> session) {
+    std::lock_guard<std::mutex> lock(sessions_mutex_);
+    if (sessions_.erase(session)) {
+        std::cout << "Player Left. Current Players: " << sessions_.size() << std::endl;
+    }
+}

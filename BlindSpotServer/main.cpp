@@ -1,7 +1,7 @@
 ﻿#include <iostream>
 #include <boost/asio.hpp>
 #include "Network/Server.h"
-#include "Game/ServerPacketHandler.h"
+#include "Network/ServerPacketHandler.h"
 
 constexpr short PORT = 7777;
 

@@ -2,10 +2,13 @@
 #include <boost/asio.hpp>
 #include <memory>
 #include <iostream>
-#include "../Game/PlayerManager.h"
+#include "../Managers/PlayerManager.h"
+#include "../Managers/SessionManager.h"
 #include "../Protocol/packet.pb.h"
-#include "../Game/ServerPacketHandler.h"
-#include "../Game/GameRoom.h"
+#include "./ServerPacketHandler.h"
+#include "../Models/GameRoom.h"
+#include "../Models/Player.h"
+
 using boost::asio::ip::tcp;
 
 class GameRoom;
@@ -17,18 +20,54 @@ struct PacketHeader {
 
 class Session : public std::enable_shared_from_this<Session> {
 public:
-    Session(tcp::socket socket) : socket_(std::move(socket)) {}
-    std::weak_ptr<GameRoom> room;
-    int32_t playerId;
-	std::string playerName;
-	std::string sessionKey;
+    Session(tcp::socket socket) : socket_(std::move(socket)) {};
+    std::shared_ptr<Player> player_ ;
+
+    std::string _sessionKey;
     void Start() {
-        PlayerManager::Instance().Add(shared_from_this());
+        SessionManager::Instance().Add(shared_from_this());
         DoRead();
     }
     void Close() {
         socket_.close();
     }
+
+    void SetPlayer(std::shared_ptr<Player> player) {
+        player_ = player;
+	}
+
+    std::string GetPlayerName() {
+        if (player_) return player_->name;
+        return "Unknown";
+	}
+    
+    void SetPlayerName(const std::string& name) {
+        if(player_)
+    		player_->SetName(name);
+	}
+
+    int32_t GetPlayerId() {
+        if (player_) {
+            return player_->id;
+        }
+        return -1;
+    }
+
+    std::shared_ptr<GameRoom> GetRoom() {
+        return player_->room.lock();
+	}
+
+    void SetRoom(std::weak_ptr<GameRoom> gameRoom) {
+        player_->room = gameRoom;
+    }
+
+    std::string GetSessionKey() const {
+        return _sessionKey;
+	}
+    void SetSessionKey(const std::string& key) {
+        _sessionKey = key;
+    }
+
     void Send(uint16_t id, google::protobuf::Message& msg) {
         std::string payload;
         msg.SerializeToString(&payload);
@@ -50,7 +89,7 @@ public:
             [this, self, send_buffer](boost::system::error_code ec, std::size_t /*length*/) {
                 if (ec) {
                     std::cout << "Send failed: " << ec.message() << std::endl;
-					PlayerManager::Instance().Remove(shared_from_this());
+					SessionManager::Instance().Remove(shared_from_this());
                 }
             });
     }
@@ -89,7 +128,7 @@ private:
                 }
                 else {
                     std::cout << "Client Disconnected." << ec.message() << std::endl;
-                    PlayerManager::Instance().Remove(shared_from_this());
+                    SessionManager::Instance().Remove(shared_from_this());
                 }
             });
 
