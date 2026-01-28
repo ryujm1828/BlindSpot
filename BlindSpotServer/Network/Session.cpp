@@ -4,18 +4,17 @@
 #include "../Core/Interfaces/ISessionManager.h"
 #include "../Models/Player.h"
 #include "../Models/GameRoom.h"
-#include "../Network/ServerPacketHandler.h" // 헤더 포함 필수
+#include "../Network/ServerPacketHandler.h"
 #include <iostream>
 
 using boost::asio::ip::tcp;
 
-// [수정] 생성자: packetHandler를 받아서 멤버 변수 초기화
 Session::Session(tcp::socket&& socket,
     std::weak_ptr<ISessionManager> sessionMgr,
     std::shared_ptr<ServerPacketHandler> packetHandler)
     : socket_(std::move(socket)),
     sessionMgr_(sessionMgr),
-    packetHandler_(packetHandler) // 멤버 초기화
+    packetHandler_(packetHandler)
 {
 }
 
@@ -29,11 +28,7 @@ void Session::Start() {
 }
 
 void Session::Close() {
-    socket_.close();
-    /* 보통 Close에서는 Remove를 직접 부르지 않고,
-       비동기 에러 처리(DoRead/Send)에서 Remove가 호출되도록 하는 게 안전합니다.
-       필요하다면 여기서 호출해도 됩니다.
-    */
+    socket_.close(); 
 }
 
 void Session::SetPlayer(std::shared_ptr<Player> player) {
@@ -116,7 +111,6 @@ void Session::DoRead() {
                 DoRead();
             }
             else {
-                // [수정] 연결 끊김 처리
                 if (auto mgr = sessionMgr_.lock()) {
                     mgr->Remove(shared_from_this());
                 }
@@ -125,8 +119,7 @@ void Session::DoRead() {
 }
 
 void Session::HandlePacket(uint16_t id, uint8_t* payload, uint16_t payload_size) {
-    // [수정] static 호출 제거 -> 주입받은 객체 사용
-    if (packetHandler_) {
-        packetHandler_->HandlePacket(shared_from_this(), id, payload, payload_size);
+    if (auto handler = packetHandler_.lock()) {
+        handler->HandlePacket(shared_from_this(), id, payload, payload_size);
     }
 }

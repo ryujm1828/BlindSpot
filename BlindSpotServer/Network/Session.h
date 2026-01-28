@@ -10,7 +10,6 @@ class Player;
 class GameRoom;
 class ISessionManager;
 
-// 패킷 헤더 구조체
 struct PacketHeader {
     uint16_t length;
     uint16_t id;
@@ -18,7 +17,6 @@ struct PacketHeader {
 
 class Session : public std::enable_shared_from_this<Session> {
 public:
-    // 생성자: 인터페이스(ISessionManager)로 받음
     Session(boost::asio::ip::tcp::socket&& socket,
         std::weak_ptr<ISessionManager> sessionMgr,
         std::shared_ptr<ServerPacketHandler> packetHandler);
@@ -29,18 +27,15 @@ public:
     void Close();
     void Send(uint16_t id, google::protobuf::Message& msg);
 
-    // Player 관련
     void SetPlayer(std::shared_ptr<Player> player);
-    std::shared_ptr<Player> GetPlayer(); // player_ 직접 접근보다 Getter 권장
+    std::shared_ptr<Player> GetPlayer(); 
     std::string GetPlayerName();
     void SetPlayerName(const std::string& name);
     int32_t GetPlayerId();
 
-    // Room 관련
     std::shared_ptr<GameRoom> GetRoom();
     void SetRoom(std::weak_ptr<GameRoom> gameRoom);
 
-    // Session Key
     std::string GetSessionKey() const { return _sessionKey; }
     void SetSessionKey(const std::string& key) { _sessionKey = key; }
 
@@ -54,11 +49,9 @@ private:
     enum { max_length = 1024 };
     char data_[max_length];
 
-    // [중요] 의존성 주입된 매니저 (싱글톤 대신 사용)
     std::weak_ptr<ISessionManager> sessionMgr_;
 
-    std::shared_ptr<Player> player_; // private으로 내리는 것을 추천
+    std::shared_ptr<Player> player_;
     std::string _sessionKey;
-    std::shared_ptr<ServerPacketHandler> packetHandler_;
+    std::weak_ptr<ServerPacketHandler> packetHandler_;
 };
-
