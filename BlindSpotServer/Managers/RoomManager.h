@@ -6,9 +6,9 @@
 #include <google/protobuf/message.h>
 #include <atomic>
 #include "../Models/GameRoom.h"
-class RoomManager {
+#include "../Core/Interfaces/IRoomManager.h"
+class RoomManager : public IRoomManager{
 public:
-	static RoomManager& Instance();
 
 	int32_t CreateRoom(const std::string& title, int32_t maxPlayers, const std::string& password, int32_t ownerId);
 	std::shared_ptr<GameRoom> GetRoomById(int room_id);

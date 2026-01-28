@@ -4,11 +4,6 @@ std::atomic<int32_t> PlayerManager::playerIdGenerator_ = 1;
 std::mutex PlayerManager::name_mutex_;
 std::map<int32_t, std::string> PlayerManager::playerIdToName_;
 
-PlayerManager& PlayerManager::Instance() {
-    static PlayerManager instance;
-    return instance;
-}
-
 int32_t PlayerManager::GeneratePlayerId() {
     return playerIdGenerator_.fetch_add(1);
 }

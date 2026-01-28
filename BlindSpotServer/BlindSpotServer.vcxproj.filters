@@ -42,6 +42,15 @@
     <ClCompile Include="Managers\SessionManager.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Services\AuthService.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Services\RoomService.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Network\Session.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Protocol\packet.pb.h">
@@ -78,6 +87,18 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Managers\SessionManager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Interfaces\IAuthManager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Interfaces\IPlayerManager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Interfaces\IRoomManager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Interfaces\ISessionManager.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

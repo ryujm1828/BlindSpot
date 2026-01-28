@@ -1,10 +1,5 @@
 #include "RoomManager.h"
 
-RoomManager& RoomManager::Instance() {
-	static RoomManager instance;
-	return instance;
-}
-
 void RoomManager::Add(uint32_t roomId, std::shared_ptr<GameRoom> room) {
 	std::lock_guard<std::mutex> lock(mutex_);
 	rooms_[roomId] = room;

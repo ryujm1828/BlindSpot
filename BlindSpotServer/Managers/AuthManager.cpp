@@ -7,25 +7,15 @@
 #include <iostream>
 #include <cstdint>
 
-std::mutex AuthManager::token_mutex_;
-std::map<std::string, int32_t> AuthManager::sessionKeyToPlayerId_;
-std::mutex AuthManager::name_mutex_;
-std::map<int32_t, std::string> AuthManager::playerIdToName_;
-
-AuthManager& AuthManager::Instance() {
-    static AuthManager instance;
-    return instance;
-}
-
-int32_t AuthManager::GetPlayerIdBySessionKey(const std::string& token) {
+int32_t AuthManager::GetPlayerIdByToken(const std::string& token) {
     std::lock_guard<std::mutex> lock(token_mutex_);
-    auto it = sessionKeyToPlayerId_.find(token);
-    if (it != sessionKeyToPlayerId_.end()) {
+    auto it = tokenToPlayerId_.find(token);
+    if (it != tokenToPlayerId_.end()) {
         return it->second;
     }
     return -1; // Not found
 }
-std::string AuthManager::GenerateSessionKey() {
+std::string AuthManager::GenerateToken() {
     static const char alphanum[] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
     static thread_local std::random_device rd;
     static thread_local std::mt19937 gen(rd());
@@ -36,12 +26,12 @@ std::string AuthManager::GenerateSessionKey() {
         key += alphanum[dis(gen)];
     return key;
 }
-void AuthManager::RemoveSession(const std::string& token) {
+void AuthManager::RemoveToken(const std::string& token) {
     std::scoped_lock lock(token_mutex_, name_mutex_);
-    auto it = sessionKeyToPlayerId_.find(token);
-    if (it != sessionKeyToPlayerId_.end()) {
+    auto it = tokenToPlayerId_.find(token);
+    if (it != tokenToPlayerId_.end()) {
         int32_t playerId = it->second;
-        sessionKeyToPlayerId_.erase(it);
+        tokenToPlayerId_.erase(it);
         //플레이어 삭제
         //playerIdToName_.erase(playerId);
         std::cout << "Session and Player data removed for Id: " << playerId << std::endl;
@@ -49,7 +39,7 @@ void AuthManager::RemoveSession(const std::string& token) {
 
 }
 
-void AuthManager::RegisterSession(const std::string& token, int32_t playerId) {
+void AuthManager::RegisterToken(const std::string& token, int32_t playerId) {
     std::lock_guard<std::mutex> lock(token_mutex_);
-    sessionKeyToPlayerId_[token] = playerId;
+    tokenToPlayerId_[token] = playerId;
 }

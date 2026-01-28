@@ -134,10 +134,17 @@
     <ClCompile Include="Managers\PlayerManager..cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Network\ServerPacketHandler.cpp" />
+    <ClCompile Include="Network\Session.cpp" />
     <ClCompile Include="Protocol\packet.pb.cc" />
+    <ClCompile Include="Services\AuthService.cpp" />
     <ClCompile Include="Services\AuthService.h" />
+    <ClCompile Include="Services\RoomService.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Core\Interfaces\IAuthManager.h" />
+    <ClInclude Include="Core\Interfaces\IPlayerManager.h" />
+    <ClInclude Include="Core\Interfaces\IRoomManager.h" />
+    <ClInclude Include="Core\Interfaces\ISessionManager.h" />
     <ClInclude Include="Managers\AuthManager.h" />
     <ClInclude Include="Managers\RoomManager.h" />
     <ClInclude Include="Managers\SessionManager.h" />

@@ -1,10 +1,6 @@
 #include "../Network/Session.h"
 #include "SessionManager.h"
 
-SessionManager& SessionManager::Instance() {
-    static SessionManager instance;
-    return instance;
-}
 
 void SessionManager::Add(std::shared_ptr<Session> session) {
     std::lock_guard<std::mutex> lock(sessions_mutex_);

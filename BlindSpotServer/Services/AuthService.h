@@ -1,36 +1,25 @@
 #pragma once
+#include <google/protobuf/message.h>
 #include "../Network/Session.h"
 #include "../Managers/AuthManager.h"
 #include "../Managers/SessionManager.h"
+#include "../Core/Interfaces/IAuthManager.h"
+#include "../Core/Interfaces/ISessionManager.h"
+#include "../Core/Interfaces/IPlayerManager.h"
+#include "../Protocol/packet.pb.h"
 
 class AuthService {
 public:
-	static void Login(std::shared_ptr<Session> session, blindspot::LoginRequest& pkt) {
-		std::string token = pkt.session_key();
-		int32_t playerId = AuthManager::Instance().GetPlayerIdBySessionKey(token);
-		//token validation logic here
-		if (playerId > 0) {
-			auto newPlayer = std::make_shared<Player>();
-			newPlayer->name = PlayerManager::Instance().GetPlayerNameById(playerId);
-			newPlayer->id = playerId;
-			session->SetPlayer(newPlayer);
-			session->SetSessionKey(token);
-		}
-		else {
-			token = AuthManager::Instance().GenerateSessionKey();
-			auto newPlayer = std::make_shared<Player>();
-			newPlayer->name = pkt.name();
-			newPlayer->id = PlayerManager::Instance().GeneratePlayerId();
-			session->SetPlayer(newPlayer);
-			session->SetSessionKey(token);
-			AuthManager::Instance().RegisterSession(token, session->GetPlayerId());
-		}
 
-		blindspot::LoginResponse res;
-		res.set_success(true);
-		res.set_player_id(session->GetPlayerId());
-		res.set_session_key(session->GetSessionKey());
-		res.set_message("Welcome " + session->GetPlayerName() + "!");
-		session->Send(blindspot::PacketID::ID_LOGIN_RESPONSE, res);
+	AuthService(std::shared_ptr<IAuthManager> authMgr,
+		std::shared_ptr<IPlayerManager> playerMgr,
+		std::shared_ptr<ISessionManager> sessionMgr)
+		: authMgr_(authMgr), playerMgr_(playerMgr), sessionMgr_(sessionMgr) {
 	}
+	void Login(std::shared_ptr<Session> session, blindspot::LoginRequest& pkt);
+
+private:
+	std::shared_ptr<IAuthManager> authMgr_;
+	std::shared_ptr<ISessionManager> sessionMgr_;
+	std::shared_ptr<IPlayerManager> playerMgr_;
 };
