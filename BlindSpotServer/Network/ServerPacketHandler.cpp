@@ -16,22 +16,22 @@ ServerPacketHandler::ServerPacketHandler(std::shared_ptr<AuthService> authServic
 }
 
 void ServerPacketHandler::Init() {
-    // [수정] 람다에서 멤버 함수를 부르려면 [this] 캡처가 필수!
-    packet_handlers_[blindspot::PacketID::ID_LOGIN_REQUEST] = [this](std::shared_ptr<Session> session, uint8_t* payload, uint16_t size) {
+    // [수정] 배열 인덱스로 쓸 때 (int) 캐스팅 필요
+    packet_handlers_[(int)blindspot::PacketID::ID_LOGIN_REQUEST] = [this](std::shared_ptr<Session> session, uint8_t* payload, uint16_t size) {
         blindspot::LoginRequest pkt;
         if (pkt.ParseFromArray(payload, size)) {
-            Handle_LOGIN_REQUEST(session, pkt); // this 덕분에 호출 가능
+            Handle_LOGIN_REQUEST(session, pkt);
         }
         };
 
-    packet_handlers_[blindspot::PacketID::ID_JOIN_ROOM_REQUEST] = [this](std::shared_ptr<Session> session, uint8_t* payload, uint16_t size) {
+    packet_handlers_[(int)blindspot::PacketID::ID_JOIN_ROOM_REQUEST] = [this](std::shared_ptr<Session> session, uint8_t* payload, uint16_t size) {
         blindspot::JoinRoomRequest pkt;
         if (pkt.ParseFromArray(payload, size)) {
             Handle_JOIN_ROOM_REQUEST(session, pkt);
         }
         };
 
-    packet_handlers_[blindspot::PacketID::ID_MAKE_ROOM_REQUEST] = [this](std::shared_ptr<Session> session, uint8_t* payload, uint16_t size) {
+    packet_handlers_[(int)blindspot::PacketID::ID_MAKE_ROOM_REQUEST] = [this](std::shared_ptr<Session> session, uint8_t* payload, uint16_t size) {
         blindspot::MakeRoomRequest pkt;
         if (pkt.ParseFromArray(payload, size)) {
             Handle_MAKE_ROOM_REQUEST(session, pkt);

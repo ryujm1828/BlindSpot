@@ -1,15 +1,21 @@
+// [BlindSpotServer/Network/Session.cpp]
+
 #include "../Network/Session.h"
-#include "../Core/Interfaces/ISessionManager.h" // 여기서 실제 헤더 포함
+#include "../Core/Interfaces/ISessionManager.h"
 #include "../Models/Player.h"
 #include "../Models/GameRoom.h"
-#include "../Network/ServerPacketHandler.h"
+#include "../Network/ServerPacketHandler.h" // 헤더 포함 필수
 #include <iostream>
 
 using boost::asio::ip::tcp;
 
-// 생성자
-Session::Session(tcp::socket&& socket, std::weak_ptr<ISessionManager> sessionMgr)
-    : socket_(std::move(socket)), sessionMgr_(sessionMgr)
+// [수정] 생성자: packetHandler를 받아서 멤버 변수 초기화
+Session::Session(tcp::socket&& socket,
+    std::weak_ptr<ISessionManager> sessionMgr,
+    std::shared_ptr<ServerPacketHandler> packetHandler)
+    : socket_(std::move(socket)),
+    sessionMgr_(sessionMgr),
+    packetHandler_(packetHandler) // 멤버 초기화
 {
 }
 
@@ -119,7 +125,8 @@ void Session::DoRead() {
 }
 
 void Session::HandlePacket(uint16_t id, uint8_t* payload, uint16_t payload_size) {
-    // 주의: ServerPacketHandler가 static이 아니라면 
-    // Session도 PacketHandler 객체를 주입받아야 합니다.
-    ServerPacketHandler::HandlePacket(shared_from_this(), id, payload, payload_size);
+    // [수정] static 호출 제거 -> 주입받은 객체 사용
+    if (packetHandler_) {
+        packetHandler_->HandlePacket(shared_from_this(), id, payload, payload_size);
+    }
 }

@@ -8,7 +8,7 @@ class ISessionManager {
 public:
 	virtual ~ISessionManager() = default;
 
-	virtual void Add(std::shared_ptr<Session> session);
-	virtual void Remove(std::shared_ptr<Session> session);
-	virtual void Broadcast(uint16_t id, google::protobuf::Message& msg);
+	virtual void Add(std::shared_ptr<Session> session) = 0;
+	virtual void Remove(std::shared_ptr<Session> session) = 0;
+	virtual void Broadcast(uint16_t id, google::protobuf::Message& msg) = 0;
 };

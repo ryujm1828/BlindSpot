@@ -6,8 +6,7 @@
 constexpr short PORT = 7777;
 
 int main() {
-	ServerPacketHandler::Init(); // Initialize packet handlers
-
+    
     try {
         boost::asio::io_context io_context;
 

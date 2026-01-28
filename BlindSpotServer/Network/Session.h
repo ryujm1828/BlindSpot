@@ -5,6 +5,7 @@
 #include <string>
 #include <google/protobuf/message.h>
 
+class ServerPacketHandler;
 class Player;
 class GameRoom;
 class ISessionManager;
@@ -18,7 +19,9 @@ struct PacketHeader {
 class Session : public std::enable_shared_from_this<Session> {
 public:
     // 생성자: 인터페이스(ISessionManager)로 받음
-    Session(boost::asio::ip::tcp::socket&& socket, std::weak_ptr<ISessionManager> sessionMgr);
+    Session(boost::asio::ip::tcp::socket&& socket,
+        std::weak_ptr<ISessionManager> sessionMgr,
+        std::shared_ptr<ServerPacketHandler> packetHandler);
     ~Session();
 
 
@@ -41,10 +44,6 @@ public:
     std::string GetSessionKey() const { return _sessionKey; }
     void SetSessionKey(const std::string& key) { _sessionKey = key; }
 
-public:
-    // 외부에서 접근 가능한 멤버 변수라면 public (Getter/Setter 권장하지만 기존 유지)
-    // std::shared_ptr<Player> player_; // 가급적 private으로 옮기고 Getter 사용 권장
-
 private:
     void DoRead();
     void HandlePacket(uint16_t id, uint8_t* payload, uint16_t payload_size);
@@ -60,4 +59,6 @@ private:
 
     std::shared_ptr<Player> player_; // private으로 내리는 것을 추천
     std::string _sessionKey;
+    std::shared_ptr<ServerPacketHandler> packetHandler_;
 };
+
