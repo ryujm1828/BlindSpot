@@ -23,8 +23,8 @@ private:
     void Handle_MAKE_ROOM_REQUEST(std::shared_ptr<Session> session, blindspot::MakeRoomRequest& pkt);
 
 private:
-    std::shared_ptr<AuthService> _authService;
-    std::shared_ptr<RoomService> _roomService;
+    std::shared_ptr<AuthService> authService_;
+    std::shared_ptr<RoomService> roomService_;
 
     PacketFunc packet_handlers_[UINT16_MAX];
 };

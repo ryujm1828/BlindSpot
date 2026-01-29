@@ -1,5 +1,11 @@
 #include "RoomService.h"
-#include "../Protocol/packet.pb.h"
+#include "../Network/Session.h"
+#include "../Managers/RoomManager.h"
+#include "../Core/Interfaces/IRoomManager.h"
+
+RoomService::RoomService(std::shared_ptr<IRoomManager> roomMgr)
+	:roomMgr_(roomMgr) {
+}
 
 void RoomService::JoinRoom(std::shared_ptr<Session> session, blindspot::JoinRoomRequest& pkt) {
 	if (session->GetRoom()) {

@@ -1,5 +1,17 @@
 #include "AuthService.h"
 #include "../Models/Player.h"
+#include "../Network/Session.h"
+#include "../Managers/AuthManager.h"
+#include "../Managers/SessionManager.h"
+#include "../Core/Interfaces/IAuthManager.h"
+#include "../Core/Interfaces/ISessionManager.h"
+#include "../Core/Interfaces/IPlayerManager.h"
+
+AuthService::AuthService(std::shared_ptr<IAuthManager> authMgr,
+	std::shared_ptr<IPlayerManager> playerMgr,
+	std::shared_ptr<ISessionManager> sessionMgr)
+	: authMgr_(authMgr), playerMgr_(playerMgr), sessionMgr_(sessionMgr) {
+}
 
 void AuthService::Login(std::shared_ptr<Session> session, blindspot::LoginRequest& pkt) {
 	std::string token = pkt.session_key();

@@ -1,6 +1,6 @@
 #pragma once
-#include "../../Network/Session.h"
 #include <cstdint>
+#include <string>
 
 class IPlayerManager {
 public:

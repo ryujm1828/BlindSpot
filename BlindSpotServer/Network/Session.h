@@ -36,8 +36,8 @@ public:
     std::shared_ptr<GameRoom> GetRoom();
     void SetRoom(std::weak_ptr<GameRoom> gameRoom);
 
-    std::string GetSessionKey() const { return _sessionKey; }
-    void SetSessionKey(const std::string& key) { _sessionKey = key; }
+    std::string GetSessionKey() const { return sessionKey_; }
+    void SetSessionKey(const std::string& key) { sessionKey_ = key; }
 
 private:
     void DoRead();
@@ -52,6 +52,6 @@ private:
     std::weak_ptr<ISessionManager> sessionMgr_;
 
     std::shared_ptr<Player> player_;
-    std::string _sessionKey;
+    std::string sessionKey_;
     std::weak_ptr<ServerPacketHandler> packetHandler_;
 };

@@ -133,6 +133,7 @@
     <ClCompile Include="Models\GameRoom.cpp" />
     <ClCompile Include="Managers\PlayerManager..cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Network\Server.cpp" />
     <ClCompile Include="Network\ServerPacketHandler.cpp" />
     <ClCompile Include="Network\Session.cpp" />
     <ClCompile Include="Protocol\packet.pb.cc" />

@@ -5,7 +5,7 @@
 
 
 ServerPacketHandler::ServerPacketHandler(std::shared_ptr<AuthService> authService, std::shared_ptr<RoomService> roomService)
-    : _authService(authService), _roomService(roomService)
+    : authService_(authService), roomService_(roomService)
 {
 
     for (int i = 0; i < UINT16_MAX; i++)
@@ -53,14 +53,14 @@ void ServerPacketHandler::HandlePacket(std::shared_ptr<Session> session, uint16_
 void ServerPacketHandler::Handle_LOGIN_REQUEST(std::shared_ptr<Session> session, blindspot::LoginRequest& pkt) {
     std::cout << "Login Request Received. Name: " << pkt.name() << std::endl;
 
-    _authService->Login(session, pkt);
+    authService_->Login(session, pkt);
 }
 
 void ServerPacketHandler::Handle_JOIN_ROOM_REQUEST(std::shared_ptr<Session> session, blindspot::JoinRoomRequest& pkt) {
 
-    _roomService->JoinRoom(session, pkt); 
+    roomService_->JoinRoom(session, pkt); 
 }
 
 void ServerPacketHandler::Handle_MAKE_ROOM_REQUEST(std::shared_ptr<Session> session, blindspot::MakeRoomRequest& pkt) {
-    _roomService->MakeRoom(session, pkt);
+    roomService_->MakeRoom(session, pkt);
 }

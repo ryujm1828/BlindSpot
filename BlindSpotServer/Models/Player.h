@@ -2,6 +2,8 @@
 #include <boost/asio.hpp>
 #include <memory>
 #include <iostream>
+class GameRoom;
+
 class Player {
 public:
     int32_t id;
