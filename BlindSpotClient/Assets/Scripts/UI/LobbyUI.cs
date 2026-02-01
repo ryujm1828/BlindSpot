@@ -20,11 +20,9 @@ public class LobbyUI : MonoBehaviour
     void OnClickJoinRoom()
     {
         Debug.Log("[LobbyUI] Join Room Button Clicked");
-        // 입력된 텍스트를 숫자로 변환
         if (int.TryParse(roomInput.text, out int roomId))
         {
-            // 네트워크 매니저에게 패킷 전송 요청
-            NetworkManager.Instance.SendJoinRoomPacket(roomId);
+            Managers.JoinRoom(roomId);
         }
         else
         {
@@ -40,7 +38,7 @@ public class LobbyUI : MonoBehaviour
         if (int.TryParse(maxPlayersInput.text, out int maxPlayers))
         {
             // 네트워크 매니저에게 패킷 전송 요청
-            NetworkManager.Instance.SendMakeRoomPacket(roomNameInput.text,maxPlayers, passwordInput.text);
+            Managers.MakeRoom(roomNameInput.text,maxPlayers, passwordInput.text);
         }
         else
         {

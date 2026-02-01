@@ -18,9 +18,9 @@ public:
     void HandlePacket(std::shared_ptr<Session> session, uint16_t id, uint8_t* payload, uint16_t size);
 
 private:
-    void Handle_LOGIN_REQUEST(std::shared_ptr<Session> session, blindspot::LoginRequest& pkt);
-    void Handle_JOIN_ROOM_REQUEST(std::shared_ptr<Session> session, blindspot::JoinRoomRequest& pkt);
-    void Handle_MAKE_ROOM_REQUEST(std::shared_ptr<Session> session, blindspot::MakeRoomRequest& pkt);
+    void Handle_C_LOGIN(std::shared_ptr<Session> session, blindspot::C_Login& pkt);
+    void Handle_C_JOIN_ROOM(std::shared_ptr<Session> session, blindspot::C_JoinRoom& pkt);
+    void Handle_C_MAKE_ROOM(std::shared_ptr<Session> session, blindspot::C_MakeRoom& pkt);
 
 private:
     std::shared_ptr<AuthService> authService_;

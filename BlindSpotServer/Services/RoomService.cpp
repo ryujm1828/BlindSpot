@@ -7,21 +7,21 @@ RoomService::RoomService(std::shared_ptr<IRoomManager> roomMgr)
 	:roomMgr_(roomMgr) {
 }
 
-void RoomService::JoinRoom(std::shared_ptr<Session> session, blindspot::JoinRoomRequest& pkt) {
+void RoomService::JoinRoom(std::shared_ptr<Session> session, blindspot::C_JoinRoom& pkt) {
 	if (session->GetRoom()) {
 		// Already in a room
-		blindspot::JoinRoomResponse res;
+		blindspot::S_JoinRoom res;
 		res.set_result(blindspot::JOIN_ALREADY_IN_ROOM);
-		session->Send(blindspot::PacketID::ID_JOIN_ROOM_RESPONSE, res);
+		session->Send(blindspot::PacketID::ID_S_JOIN_ROOM, res);
 		return;
 	}
 	int32_t room_Id = pkt.room_id();
 	auto room = roomMgr_->GetRoomById(room_Id);
-	blindspot::JoinRoomResponse res;
+	blindspot::S_JoinRoom res;
 	if (room == nullptr) {
 		std::cout << "There is no room with ID: " << room_Id << std::endl;
 		res.set_result(blindspot::JOIN_ROOM_NOT_FOUND);
-		session->Send(blindspot::PacketID::ID_JOIN_ROOM_RESPONSE, res);
+		session->Send(blindspot::PacketID::ID_S_JOIN_ROOM, res);
 		std::cout << "[Room] Room not Found with ID: " << room_Id << std::endl;
 		return;
 	}
@@ -33,17 +33,17 @@ void RoomService::JoinRoom(std::shared_ptr<Session> session, blindspot::JoinRoom
 	res.set_result(blindspot::JOIN_SUCCESS);
 	res.set_room_id(room_Id);
 
-	session->Send(blindspot::PacketID::ID_JOIN_ROOM_RESPONSE, res);
+	session->Send(blindspot::PacketID::ID_S_JOIN_ROOM, res);
 
 	std::cout << "[Room] Player joined room ID: " << room_Id << std::endl;
 }
 
-void RoomService::MakeRoom(std::shared_ptr<Session> session, blindspot::MakeRoomRequest& pkt) {
+void RoomService::MakeRoom(std::shared_ptr<Session> session, blindspot::C_MakeRoom& pkt) {
 	if (session->GetRoom()) {
 		// Already in a room
-		blindspot::MakeRoomResponse res;
+		blindspot::S_MakeRoom res;
 		res.set_result(blindspot::MAKE_ALREADY_IN_ROOM);
-		session->Send(blindspot::PacketID::ID_MAKE_ROOM_RESPONSE, res);
+		session->Send(blindspot::PacketID::ID_S_MAKE_ROOM, res);
 		return;
 	}
 	std::string title = pkt.room_name();
@@ -59,10 +59,10 @@ void RoomService::MakeRoom(std::shared_ptr<Session> session, blindspot::MakeRoom
 
 	auto room = roomMgr_->GetRoomById(newRoomId);
 
-	blindspot::MakeRoomResponse res;
+	blindspot::S_MakeRoom res;
 	if (room == nullptr) {
 		res.set_result(blindspot::MAKE_SERVER_FULL); // 적절한 에러 코드
-		session->Send(blindspot::PacketID::ID_MAKE_ROOM_RESPONSE, res);
+		session->Send(blindspot::PacketID::ID_S_MAKE_ROOM, res);
 		return;
 	}
 
@@ -71,5 +71,5 @@ void RoomService::MakeRoom(std::shared_ptr<Session> session, blindspot::MakeRoom
 	res.set_result(blindspot::MAKE_SUCCESS);
 	res.set_room_id(newRoomId);
 
-	session->Send(blindspot::PacketID::ID_MAKE_ROOM_RESPONSE, res);
+	session->Send(blindspot::PacketID::ID_S_MAKE_ROOM, res);
 }

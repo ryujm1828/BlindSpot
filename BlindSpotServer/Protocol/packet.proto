@@ -3,29 +3,32 @@ package blindspot;
 
 enum PacketID {
     ID_NONE = 0;
-    ID_LOGIN_REQUEST = 1;
-    ID_LOGIN_RESPONSE = 2;
-    ID_JOIN_ROOM_REQUEST = 3;
-    ID_JOIN_ROOM_RESPONSE = 4;
-    ID_MAKE_ROOM_REQUEST = 5;
-    ID_MAKE_ROOM_RESPONSE = 6;
-}
-message LoginRequest {
-  string name = 1;
-  string session_key = 2;  
-}
-
-message JoinRoomRequest {
-    int32 room_id = 1;
+    ID_C_LOGIN = 1;         // Client -> Server
+    ID_S_LOGIN = 2;         // Server -> Client
+    ID_C_JOIN_ROOM = 3;
+    ID_S_JOIN_ROOM = 4;
+    ID_C_MAKE_ROOM = 5;
+    ID_S_MAKE_ROOM = 6;
+    ID_C_START_GAME = 7;
+    ID_S_START_GAME = 8;
+    ID_C_MOVE = 9;
+    ID_S_MOVE = 10;
 }
 
-message LoginResponse {
+// --- Login ---
+message C_Login {
+    string name = 1;
+    string session_key = 2;
+}
+
+message S_Login {
     bool success = 1;
     int32 player_id = 2;
     string session_key = 3;
-    string message = 4; // Optional message for additional info
+    string message = 4;
 }
 
+// --- Join Room ---
 enum JoinRoomResult {
     JOIN_SUCCESS = 0;
     JOIN_ROOM_FULL = 1;
@@ -33,12 +36,17 @@ enum JoinRoomResult {
     JOIN_ALREADY_IN_ROOM = 3;
 }
 
-message JoinRoomResponse {
-    JoinRoomResult result = 1;
-    int32 room_id = 2;
-    // 방에 있는 다른 플레이어 목록 정보 등을 담을 수도 있음
+message C_JoinRoom {
+    int32 room_id = 1;
 }
 
+message S_JoinRoom {
+    JoinRoomResult result = 1;
+    int32 room_id = 2;
+    // repeated PlayerInfo players = 3; // 나중에 방에 있는 플레이어 목록을 보낼 때 활용
+}
+
+// --- Make Room ---
 enum MakeRoomResult {
     MAKE_SUCCESS = 0;
     MAKE_INVALID_PARAMETER = 1;
@@ -46,13 +54,66 @@ enum MakeRoomResult {
     MAKE_ALREADY_IN_ROOM = 3;
 }
 
-message MakeRoomRequest {
+message C_MakeRoom {
     string room_name = 1;
     int32 max_players = 2;
-    string password = 3; // Optional password for private rooms
+    string password = 3;
 }
 
-message MakeRoomResponse {
+message S_MakeRoom {
     MakeRoomResult result = 1;
     int32 room_id = 2;
+}
+
+// --- Start Game ---
+
+message C_StartGame {
+}
+
+message S_StartGame {
+    bool success = 1;
+    string message = 2;
+}
+
+// --- Move ---
+enum MoveState {
+    MOVE_WALK = 0;
+    MOVE_RUN = 1;
+    MOVE_CROUCH = 2;
+}
+
+message C_Move {
+    float pos_x = 1;
+    float pos_y= 2;
+    float pos_z = 3;
+    float vel_x= 4;
+    float vel_y = 5;
+    float vel_z = 6;
+    flaot look_andgle = 7;
+    MoveState state = 8;
+}
+
+message S_MOVE {
+    int32 player_id = 1;
+    float pos_x = 2;
+    float pos_y = 3;
+    float pos_z = 4;
+    float look_angle = 5;
+}
+
+// Sound_Event
+enum SoundType {
+    SOUND_FOOTSTEP = 0;
+    SOUND_GUNSHOT = 1;
+    SOUND_DOOR_CREAK = 2;
+    SOUND_EXPLOSION = 3;
+}
+
+message S_SOUND_EVENT {
+    int32 player_id = 1;
+    float posX = 2;
+    float posY = 3;
+    float radius = 4;
+    float volume = 5;
+    SoundType type = 6;
 }

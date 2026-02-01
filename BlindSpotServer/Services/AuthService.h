@@ -17,8 +17,9 @@ public:
 	AuthService(std::shared_ptr<IAuthManager> authMgr,
 		std::shared_ptr<IPlayerManager> playerMgr,
 		std::shared_ptr<ISessionManager> sessionMgr);
-	void Login(std::shared_ptr<Session> session, blindspot::LoginRequest& pkt);
-
+	void Login(std::shared_ptr<Session> session, blindspot::C_Login& pkt);
+	void Logout(std::shared_ptr<Session> session);
+	bool isValidSession(std::shared_ptr<Session> session);
 private:
 	std::shared_ptr<IAuthManager> authMgr_;
 	std::shared_ptr<ISessionManager> sessionMgr_;

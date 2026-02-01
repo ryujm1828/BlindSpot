@@ -32,8 +32,6 @@ void AuthManager::RemoveToken(const std::string& token) {
     if (it != tokenToPlayerId_.end()) {
         int32_t playerId = it->second;
         tokenToPlayerId_.erase(it);
-        //플레이어 삭제
-        //playerIdToName_.erase(playerId);
         std::cout << "Session and Player data removed for Id: " << playerId << std::endl;
     }
 

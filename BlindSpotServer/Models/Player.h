@@ -8,16 +8,19 @@ class Player {
 public:
     int32_t id;
     std::string name;
-    std::mutex _nameLock;
+    std::mutex nameLock_;
     std::weak_ptr<GameRoom> room;
 
-    void SetName(const std::string& playerName) {
-        std::lock_guard<std::mutex> lock(_nameLock);
-        name = playerName;
-    }
+	float posX = 0, posY = 0, posZ = 0;
+	float lookAngle = 0;
+	uint64_t lastPacketTime = 0;
 
-    std::string GetName() {
-        std::lock_guard<std::mutex> lock(_nameLock);
-        return name;
-    }
+    bool IsRotationValid(float newLookAngle);
+    void SetName(const std::string& playerName);
+    std::string GetName();
+    void SetRoom(std::shared_ptr<GameRoom> newRoom);
+    std::shared_ptr<GameRoom> GetRoom();
+
+private:
+	std::mutex roomLock_;
 };

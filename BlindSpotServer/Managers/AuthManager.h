@@ -28,5 +28,4 @@ private:
 	std::mutex token_mutex_;
 	std::map<std::string, int32_t> tokenToPlayerId_;
 	std::mutex name_mutex_;
-	std::map<int32_t, std::string> playerIdToName_;
 };

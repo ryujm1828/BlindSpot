@@ -24,34 +24,33 @@ namespace Blindspot {
     static PacketReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "CgxwYWNrZXQucHJvdG8SCWJsaW5kc3BvdCIxCgxMb2dpblJlcXVlc3QSDAoE",
-            "bmFtZRgBIAEoCRITCgtzZXNzaW9uX2tleRgCIAEoCSIiCg9Kb2luUm9vbVJl",
-            "cXVlc3QSDwoHcm9vbV9pZBgBIAEoBSJZCg1Mb2dpblJlc3BvbnNlEg8KB3N1",
-            "Y2Nlc3MYASABKAgSEQoJcGxheWVyX2lkGAIgASgFEhMKC3Nlc3Npb25fa2V5",
-            "GAMgASgJEg8KB21lc3NhZ2UYBCABKAkiTgoQSm9pblJvb21SZXNwb25zZRIp",
-            "CgZyZXN1bHQYASABKA4yGS5ibGluZHNwb3QuSm9pblJvb21SZXN1bHQSDwoH",
-            "cm9vbV9pZBgCIAEoBSJLCg9NYWtlUm9vbVJlcXVlc3QSEQoJcm9vbV9uYW1l",
-            "GAEgASgJEhMKC21heF9wbGF5ZXJzGAIgASgFEhAKCHBhc3N3b3JkGAMgASgJ",
-            "Ik4KEE1ha2VSb29tUmVzcG9uc2USKQoGcmVzdWx0GAEgASgOMhkuYmxpbmRz",
-            "cG90Lk1ha2VSb29tUmVzdWx0Eg8KB3Jvb21faWQYAiABKAUqrgEKCFBhY2tl",
-            "dElEEgsKB0lEX05PTkUQABIUChBJRF9MT0dJTl9SRVFVRVNUEAESFQoRSURf",
-            "TE9HSU5fUkVTUE9OU0UQAhIYChRJRF9KT0lOX1JPT01fUkVRVUVTVBADEhkK",
-            "FUlEX0pPSU5fUk9PTV9SRVNQT05TRRAEEhgKFElEX01BS0VfUk9PTV9SRVFV",
-            "RVNUEAUSGQoVSURfTUFLRV9ST09NX1JFU1BPTlNFEAYqaQoOSm9pblJvb21S",
-            "ZXN1bHQSEAoMSk9JTl9TVUNDRVNTEAASEgoOSk9JTl9ST09NX0ZVTEwQARIX",
-            "ChNKT0lOX1JPT01fTk9UX0ZPVU5EEAISGAoUSk9JTl9BTFJFQURZX0lOX1JP",
-            "T00QAypuCg5NYWtlUm9vbVJlc3VsdBIQCgxNQUtFX1NVQ0NFU1MQABIaChZN",
-            "QUtFX0lOVkFMSURfUEFSQU1FVEVSEAESFAoQTUFLRV9TRVJWRVJfRlVMTBAC",
-            "EhgKFE1BS0VfQUxSRUFEWV9JTl9ST09NEANiBnByb3RvMw=="));
+            "CgxwYWNrZXQucHJvdG8SCWJsaW5kc3BvdCIsCgdDX0xvZ2luEgwKBG5hbWUY",
+            "ASABKAkSEwoLc2Vzc2lvbl9rZXkYAiABKAkiUwoHU19Mb2dpbhIPCgdzdWNj",
+            "ZXNzGAEgASgIEhEKCXBsYXllcl9pZBgCIAEoBRITCgtzZXNzaW9uX2tleRgD",
+            "IAEoCRIPCgdtZXNzYWdlGAQgASgJIh0KCkNfSm9pblJvb20SDwoHcm9vbV9p",
+            "ZBgBIAEoBSJICgpTX0pvaW5Sb29tEikKBnJlc3VsdBgBIAEoDjIZLmJsaW5k",
+            "c3BvdC5Kb2luUm9vbVJlc3VsdBIPCgdyb29tX2lkGAIgASgFIkYKCkNfTWFr",
+            "ZVJvb20SEQoJcm9vbV9uYW1lGAEgASgJEhMKC21heF9wbGF5ZXJzGAIgASgF",
+            "EhAKCHBhc3N3b3JkGAMgASgJIkgKClNfTWFrZVJvb20SKQoGcmVzdWx0GAEg",
+            "ASgOMhkuYmxpbmRzcG90Lk1ha2VSb29tUmVzdWx0Eg8KB3Jvb21faWQYAiAB",
+            "KAUqhwEKCFBhY2tldElEEgsKB0lEX05PTkUQABIOCgpJRF9DX0xPR0lOEAES",
+            "DgoKSURfU19MT0dJThACEhIKDklEX0NfSk9JTl9ST09NEAMSEgoOSURfU19K",
+            "T0lOX1JPT00QBBISCg5JRF9DX01BS0VfUk9PTRAFEhIKDklEX1NfTUFLRV9S",
+            "T09NEAYqaQoOSm9pblJvb21SZXN1bHQSEAoMSk9JTl9TVUNDRVNTEAASEgoO",
+            "Sk9JTl9ST09NX0ZVTEwQARIXChNKT0lOX1JPT01fTk9UX0ZPVU5EEAISGAoU",
+            "Sk9JTl9BTFJFQURZX0lOX1JPT00QAypuCg5NYWtlUm9vbVJlc3VsdBIQCgxN",
+            "QUtFX1NVQ0NFU1MQABIaChZNQUtFX0lOVkFMSURfUEFSQU1FVEVSEAESFAoQ",
+            "TUFLRV9TRVJWRVJfRlVMTBACEhgKFE1BS0VfQUxSRUFEWV9JTl9ST09NEANi",
+            "BnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Blindspot.PacketID), typeof(global::Blindspot.JoinRoomResult), typeof(global::Blindspot.MakeRoomResult), }, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Blindspot.LoginRequest), global::Blindspot.LoginRequest.Parser, new[]{ "Name", "SessionKey" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Blindspot.JoinRoomRequest), global::Blindspot.JoinRoomRequest.Parser, new[]{ "RoomId" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Blindspot.LoginResponse), global::Blindspot.LoginResponse.Parser, new[]{ "Success", "PlayerId", "SessionKey", "Message" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Blindspot.JoinRoomResponse), global::Blindspot.JoinRoomResponse.Parser, new[]{ "Result", "RoomId" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Blindspot.MakeRoomRequest), global::Blindspot.MakeRoomRequest.Parser, new[]{ "RoomName", "MaxPlayers", "Password" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Blindspot.MakeRoomResponse), global::Blindspot.MakeRoomResponse.Parser, new[]{ "Result", "RoomId" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Blindspot.C_Login), global::Blindspot.C_Login.Parser, new[]{ "Name", "SessionKey" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Blindspot.S_Login), global::Blindspot.S_Login.Parser, new[]{ "Success", "PlayerId", "SessionKey", "Message" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Blindspot.C_JoinRoom), global::Blindspot.C_JoinRoom.Parser, new[]{ "RoomId" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Blindspot.S_JoinRoom), global::Blindspot.S_JoinRoom.Parser, new[]{ "Result", "RoomId" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Blindspot.C_MakeRoom), global::Blindspot.C_MakeRoom.Parser, new[]{ "RoomName", "MaxPlayers", "Password" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Blindspot.S_MakeRoom), global::Blindspot.S_MakeRoom.Parser, new[]{ "Result", "RoomId" }, null, null, null, null)
           }));
     }
     #endregion
@@ -60,14 +59,23 @@ namespace Blindspot {
   #region Enums
   public enum PacketID {
     [pbr::OriginalName("ID_NONE")] IdNone = 0,
-    [pbr::OriginalName("ID_LOGIN_REQUEST")] IdLoginRequest = 1,
-    [pbr::OriginalName("ID_LOGIN_RESPONSE")] IdLoginResponse = 2,
-    [pbr::OriginalName("ID_JOIN_ROOM_REQUEST")] IdJoinRoomRequest = 3,
-    [pbr::OriginalName("ID_JOIN_ROOM_RESPONSE")] IdJoinRoomResponse = 4,
-    [pbr::OriginalName("ID_MAKE_ROOM_REQUEST")] IdMakeRoomRequest = 5,
-    [pbr::OriginalName("ID_MAKE_ROOM_RESPONSE")] IdMakeRoomResponse = 6,
+    /// <summary>
+    /// Client -> Server
+    /// </summary>
+    [pbr::OriginalName("ID_C_LOGIN")] IdCLogin = 1,
+    /// <summary>
+    /// Server -> Client
+    /// </summary>
+    [pbr::OriginalName("ID_S_LOGIN")] IdSLogin = 2,
+    [pbr::OriginalName("ID_C_JOIN_ROOM")] IdCJoinRoom = 3,
+    [pbr::OriginalName("ID_S_JOIN_ROOM")] IdSJoinRoom = 4,
+    [pbr::OriginalName("ID_C_MAKE_ROOM")] IdCMakeRoom = 5,
+    [pbr::OriginalName("ID_S_MAKE_ROOM")] IdSMakeRoom = 6,
   }
 
+  /// <summary>
+  /// --- Join Room ---
+  /// </summary>
   public enum JoinRoomResult {
     [pbr::OriginalName("JOIN_SUCCESS")] JoinSuccess = 0,
     [pbr::OriginalName("JOIN_ROOM_FULL")] JoinRoomFull = 1,
@@ -75,6 +83,9 @@ namespace Blindspot {
     [pbr::OriginalName("JOIN_ALREADY_IN_ROOM")] JoinAlreadyInRoom = 3,
   }
 
+  /// <summary>
+  /// --- Make Room ---
+  /// </summary>
   public enum MakeRoomResult {
     [pbr::OriginalName("MAKE_SUCCESS")] MakeSuccess = 0,
     [pbr::OriginalName("MAKE_INVALID_PARAMETER")] MakeInvalidParameter = 1,
@@ -85,17 +96,20 @@ namespace Blindspot {
   #endregion
 
   #region Messages
+  /// <summary>
+  /// --- Login ---
+  /// </summary>
   [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class LoginRequest : pb::IMessage<LoginRequest>
+  public sealed partial class C_Login : pb::IMessage<C_Login>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
   {
-    private static readonly pb::MessageParser<LoginRequest> _parser = new pb::MessageParser<LoginRequest>(() => new LoginRequest());
+    private static readonly pb::MessageParser<C_Login> _parser = new pb::MessageParser<C_Login>(() => new C_Login());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<LoginRequest> Parser { get { return _parser; } }
+    public static pb::MessageParser<C_Login> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -111,7 +125,7 @@ namespace Blindspot {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public LoginRequest() {
+    public C_Login() {
       OnConstruction();
     }
 
@@ -119,7 +133,7 @@ namespace Blindspot {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public LoginRequest(LoginRequest other) : this() {
+    public C_Login(C_Login other) : this() {
       name_ = other.name_;
       sessionKey_ = other.sessionKey_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
@@ -127,8 +141,8 @@ namespace Blindspot {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public LoginRequest Clone() {
-      return new LoginRequest(this);
+    public C_Login Clone() {
+      return new C_Login(this);
     }
 
     /// <summary>Field number for the "name" field.</summary>
@@ -158,12 +172,12 @@ namespace Blindspot {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
-      return Equals(other as LoginRequest);
+      return Equals(other as C_Login);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(LoginRequest other) {
+    public bool Equals(C_Login other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -249,7 +263,7 @@ namespace Blindspot {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(LoginRequest other) {
+    public void MergeFrom(C_Login other) {
       if (other == null) {
         return;
       }
@@ -321,16 +335,16 @@ namespace Blindspot {
   }
 
   [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class JoinRoomRequest : pb::IMessage<JoinRoomRequest>
+  public sealed partial class S_Login : pb::IMessage<S_Login>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
   {
-    private static readonly pb::MessageParser<JoinRoomRequest> _parser = new pb::MessageParser<JoinRoomRequest>(() => new JoinRoomRequest());
+    private static readonly pb::MessageParser<S_Login> _parser = new pb::MessageParser<S_Login>(() => new S_Login());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<JoinRoomRequest> Parser { get { return _parser; } }
+    public static pb::MessageParser<S_Login> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -346,7 +360,7 @@ namespace Blindspot {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public JoinRoomRequest() {
+    public S_Login() {
       OnConstruction();
     }
 
@@ -354,205 +368,7 @@ namespace Blindspot {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public JoinRoomRequest(JoinRoomRequest other) : this() {
-      roomId_ = other.roomId_;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public JoinRoomRequest Clone() {
-      return new JoinRoomRequest(this);
-    }
-
-    /// <summary>Field number for the "room_id" field.</summary>
-    public const int RoomIdFieldNumber = 1;
-    private int roomId_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int RoomId {
-      get { return roomId_; }
-      set {
-        roomId_ = value;
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as JoinRoomRequest);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(JoinRoomRequest other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (RoomId != other.RoomId) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (RoomId != 0) hash ^= RoomId.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
-      if (RoomId != 0) {
-        output.WriteRawTag(8);
-        output.WriteInt32(RoomId);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (RoomId != 0) {
-        output.WriteRawTag(8);
-        output.WriteInt32(RoomId);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize() {
-      int size = 0;
-      if (RoomId != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(RoomId);
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(JoinRoomRequest other) {
-      if (other == null) {
-        return;
-      }
-      if (other.RoomId != 0) {
-        RoomId = other.RoomId;
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-      if ((tag & 7) == 4) {
-        // Abort on any end group tag.
-        return;
-      }
-      switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 8: {
-            RoomId = input.ReadInt32();
-            break;
-          }
-        }
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-      if ((tag & 7) == 4) {
-        // Abort on any end group tag.
-        return;
-      }
-      switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-          case 8: {
-            RoomId = input.ReadInt32();
-            break;
-          }
-        }
-      }
-    }
-    #endif
-
-  }
-
-  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class LoginResponse : pb::IMessage<LoginResponse>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<LoginResponse> _parser = new pb::MessageParser<LoginResponse>(() => new LoginResponse());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<LoginResponse> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::Blindspot.PacketReflection.Descriptor.MessageTypes[2]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public LoginResponse() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public LoginResponse(LoginResponse other) : this() {
+    public S_Login(S_Login other) : this() {
       success_ = other.success_;
       playerId_ = other.playerId_;
       sessionKey_ = other.sessionKey_;
@@ -562,8 +378,8 @@ namespace Blindspot {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public LoginResponse Clone() {
-      return new LoginResponse(this);
+    public S_Login Clone() {
+      return new S_Login(this);
     }
 
     /// <summary>Field number for the "success" field.</summary>
@@ -605,9 +421,6 @@ namespace Blindspot {
     /// <summary>Field number for the "message" field.</summary>
     public const int MessageFieldNumber = 4;
     private string message_ = "";
-    /// <summary>
-    /// Optional message for additional info
-    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string Message {
@@ -620,12 +433,12 @@ namespace Blindspot {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
-      return Equals(other as LoginResponse);
+      return Equals(other as S_Login);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(LoginResponse other) {
+    public bool Equals(S_Login other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -737,7 +550,7 @@ namespace Blindspot {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(LoginResponse other) {
+    public void MergeFrom(S_Login other) {
       if (other == null) {
         return;
       }
@@ -831,16 +644,214 @@ namespace Blindspot {
   }
 
   [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class JoinRoomResponse : pb::IMessage<JoinRoomResponse>
+  public sealed partial class C_JoinRoom : pb::IMessage<C_JoinRoom>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
   {
-    private static readonly pb::MessageParser<JoinRoomResponse> _parser = new pb::MessageParser<JoinRoomResponse>(() => new JoinRoomResponse());
+    private static readonly pb::MessageParser<C_JoinRoom> _parser = new pb::MessageParser<C_JoinRoom>(() => new C_JoinRoom());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<JoinRoomResponse> Parser { get { return _parser; } }
+    public static pb::MessageParser<C_JoinRoom> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Blindspot.PacketReflection.Descriptor.MessageTypes[2]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public C_JoinRoom() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public C_JoinRoom(C_JoinRoom other) : this() {
+      roomId_ = other.roomId_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public C_JoinRoom Clone() {
+      return new C_JoinRoom(this);
+    }
+
+    /// <summary>Field number for the "room_id" field.</summary>
+    public const int RoomIdFieldNumber = 1;
+    private int roomId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int RoomId {
+      get { return roomId_; }
+      set {
+        roomId_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as C_JoinRoom);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(C_JoinRoom other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (RoomId != other.RoomId) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (RoomId != 0) hash ^= RoomId.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (RoomId != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(RoomId);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (RoomId != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(RoomId);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (RoomId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(RoomId);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(C_JoinRoom other) {
+      if (other == null) {
+        return;
+      }
+      if (other.RoomId != 0) {
+        RoomId = other.RoomId;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            RoomId = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 8: {
+            RoomId = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class S_JoinRoom : pb::IMessage<S_JoinRoom>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<S_JoinRoom> _parser = new pb::MessageParser<S_JoinRoom>(() => new S_JoinRoom());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<S_JoinRoom> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -856,7 +867,7 @@ namespace Blindspot {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public JoinRoomResponse() {
+    public S_JoinRoom() {
       OnConstruction();
     }
 
@@ -864,7 +875,7 @@ namespace Blindspot {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public JoinRoomResponse(JoinRoomResponse other) : this() {
+    public S_JoinRoom(S_JoinRoom other) : this() {
       result_ = other.result_;
       roomId_ = other.roomId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
@@ -872,8 +883,8 @@ namespace Blindspot {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public JoinRoomResponse Clone() {
-      return new JoinRoomResponse(this);
+    public S_JoinRoom Clone() {
+      return new S_JoinRoom(this);
     }
 
     /// <summary>Field number for the "result" field.</summary>
@@ -892,7 +903,7 @@ namespace Blindspot {
     public const int RoomIdFieldNumber = 2;
     private int roomId_;
     /// <summary>
-    /// 방에 있는 다른 플레이어 목록 정보 등을 담을 수도 있음
+    /// repeated PlayerInfo players = 3; // 나중에 방에 있는 플레이어 목록을 보낼 때 활용
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -906,12 +917,12 @@ namespace Blindspot {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
-      return Equals(other as JoinRoomResponse);
+      return Equals(other as S_JoinRoom);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(JoinRoomResponse other) {
+    public bool Equals(S_JoinRoom other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -997,7 +1008,7 @@ namespace Blindspot {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(JoinRoomResponse other) {
+    public void MergeFrom(S_JoinRoom other) {
       if (other == null) {
         return;
       }
@@ -1069,16 +1080,16 @@ namespace Blindspot {
   }
 
   [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class MakeRoomRequest : pb::IMessage<MakeRoomRequest>
+  public sealed partial class C_MakeRoom : pb::IMessage<C_MakeRoom>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
   {
-    private static readonly pb::MessageParser<MakeRoomRequest> _parser = new pb::MessageParser<MakeRoomRequest>(() => new MakeRoomRequest());
+    private static readonly pb::MessageParser<C_MakeRoom> _parser = new pb::MessageParser<C_MakeRoom>(() => new C_MakeRoom());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<MakeRoomRequest> Parser { get { return _parser; } }
+    public static pb::MessageParser<C_MakeRoom> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -1094,7 +1105,7 @@ namespace Blindspot {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public MakeRoomRequest() {
+    public C_MakeRoom() {
       OnConstruction();
     }
 
@@ -1102,7 +1113,7 @@ namespace Blindspot {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public MakeRoomRequest(MakeRoomRequest other) : this() {
+    public C_MakeRoom(C_MakeRoom other) : this() {
       roomName_ = other.roomName_;
       maxPlayers_ = other.maxPlayers_;
       password_ = other.password_;
@@ -1111,8 +1122,8 @@ namespace Blindspot {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public MakeRoomRequest Clone() {
-      return new MakeRoomRequest(this);
+    public C_MakeRoom Clone() {
+      return new C_MakeRoom(this);
     }
 
     /// <summary>Field number for the "room_name" field.</summary>
@@ -1142,9 +1153,6 @@ namespace Blindspot {
     /// <summary>Field number for the "password" field.</summary>
     public const int PasswordFieldNumber = 3;
     private string password_ = "";
-    /// <summary>
-    /// Optional password for private rooms
-    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string Password {
@@ -1157,12 +1165,12 @@ namespace Blindspot {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
-      return Equals(other as MakeRoomRequest);
+      return Equals(other as C_MakeRoom);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(MakeRoomRequest other) {
+    public bool Equals(C_MakeRoom other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -1261,7 +1269,7 @@ namespace Blindspot {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(MakeRoomRequest other) {
+    public void MergeFrom(C_MakeRoom other) {
       if (other == null) {
         return;
       }
@@ -1344,16 +1352,16 @@ namespace Blindspot {
   }
 
   [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class MakeRoomResponse : pb::IMessage<MakeRoomResponse>
+  public sealed partial class S_MakeRoom : pb::IMessage<S_MakeRoom>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
   {
-    private static readonly pb::MessageParser<MakeRoomResponse> _parser = new pb::MessageParser<MakeRoomResponse>(() => new MakeRoomResponse());
+    private static readonly pb::MessageParser<S_MakeRoom> _parser = new pb::MessageParser<S_MakeRoom>(() => new S_MakeRoom());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<MakeRoomResponse> Parser { get { return _parser; } }
+    public static pb::MessageParser<S_MakeRoom> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -1369,7 +1377,7 @@ namespace Blindspot {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public MakeRoomResponse() {
+    public S_MakeRoom() {
       OnConstruction();
     }
 
@@ -1377,7 +1385,7 @@ namespace Blindspot {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public MakeRoomResponse(MakeRoomResponse other) : this() {
+    public S_MakeRoom(S_MakeRoom other) : this() {
       result_ = other.result_;
       roomId_ = other.roomId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
@@ -1385,8 +1393,8 @@ namespace Blindspot {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public MakeRoomResponse Clone() {
-      return new MakeRoomResponse(this);
+    public S_MakeRoom Clone() {
+      return new S_MakeRoom(this);
     }
 
     /// <summary>Field number for the "result" field.</summary>
@@ -1416,12 +1424,12 @@ namespace Blindspot {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
-      return Equals(other as MakeRoomResponse);
+      return Equals(other as S_MakeRoom);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(MakeRoomResponse other) {
+    public bool Equals(S_MakeRoom other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -1507,7 +1515,7 @@ namespace Blindspot {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(MakeRoomResponse other) {
+    public void MergeFrom(S_MakeRoom other) {
       if (other == null) {
         return;
       }

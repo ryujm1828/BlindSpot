@@ -13,7 +13,7 @@ AuthService::AuthService(std::shared_ptr<IAuthManager> authMgr,
 	: authMgr_(authMgr), playerMgr_(playerMgr), sessionMgr_(sessionMgr) {
 }
 
-void AuthService::Login(std::shared_ptr<Session> session, blindspot::LoginRequest& pkt) {
+void AuthService::Login(std::shared_ptr<Session> session, blindspot::C_Login& pkt) {
 	std::string token = pkt.session_key();
 	int32_t playerId = authMgr_->GetPlayerIdByToken(token);
 	//token validation logic here
@@ -34,10 +34,21 @@ void AuthService::Login(std::shared_ptr<Session> session, blindspot::LoginReques
 		authMgr_->RegisterToken(token, session->GetPlayerId());
 	}
 
-	blindspot::LoginResponse res;
+	blindspot::S_Login res;
 	res.set_success(true);
 	res.set_player_id(session->GetPlayerId());
 	res.set_session_key(session->GetSessionKey());
 	res.set_message("Welcome " + session->GetPlayerName() + "!");
-	session->Send(blindspot::PacketID::ID_LOGIN_RESPONSE, res);
+	session->Send(blindspot::PacketID::ID_S_LOGIN, res);
 }
+
+void AuthService::Logout(std::shared_ptr<Session> session) {
+	
+}
+
+bool AuthService::isValidSession(std::shared_ptr<Session> session) {
+	if (authMgr_->GetPlayerIdByToken(session->GetSessionKey()) > 0)
+		return true;
+	return false;
+}
+
