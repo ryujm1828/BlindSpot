@@ -35,6 +35,7 @@ public class Managers : MonoBehaviour
             _instance = go.GetOrAddComponent<Managers>();
             DontDestroyOnLoad(go);
 
+            if (_instance._networkManager != null) return;
 
             _instance._roomManager = new RoomManager();
             _instance._networkManager = new NetworkManager();
