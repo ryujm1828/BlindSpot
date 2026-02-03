@@ -6,6 +6,7 @@
 #include "../Core/Interfaces/IAuthManager.h"
 #include "../Core/Interfaces/ISessionManager.h"
 #include "../Core/Interfaces/IPlayerManager.h"
+#include "../Core/Interfaces/ISession.h"
 
 AuthService::AuthService(std::shared_ptr<IAuthManager> authMgr,
 	std::shared_ptr<IPlayerManager> playerMgr,
@@ -13,7 +14,7 @@ AuthService::AuthService(std::shared_ptr<IAuthManager> authMgr,
 	: authMgr_(authMgr), playerMgr_(playerMgr), sessionMgr_(sessionMgr) {
 }
 
-void AuthService::Login(std::shared_ptr<Session> session, blindspot::C_Login& pkt) {
+void AuthService::Login(std::shared_ptr<ISession> session, blindspot::C_Login& pkt) {
 	std::string token = pkt.session_key();
 	int32_t playerId = authMgr_->GetPlayerIdByToken(token);
 	//token validation logic here
@@ -42,11 +43,11 @@ void AuthService::Login(std::shared_ptr<Session> session, blindspot::C_Login& pk
 	session->Send(blindspot::PacketID::ID_S_LOGIN, res);
 }
 
-void AuthService::Logout(std::shared_ptr<Session> session) {
+void AuthService::Logout(std::shared_ptr<ISession> session) {
 	
 }
 
-bool AuthService::isValidSession(std::shared_ptr<Session> session) {
+bool AuthService::isValidSession(std::shared_ptr<ISession> session) {
 	if (authMgr_->GetPlayerIdByToken(session->GetSessionKey()) > 0)
 		return true;
 	return false;

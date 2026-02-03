@@ -4,6 +4,7 @@
 #include <vector>
 #include <string>
 #include <google/protobuf/message.h>
+#include "../Core/Interfaces/ISession.h"
 
 class ServerPacketHandler;
 class Player;
@@ -15,7 +16,7 @@ struct PacketHeader {
     uint16_t id;
 };
 
-class Session : public std::enable_shared_from_this<Session> {
+class Session : public std::enable_shared_from_this<Session>, public ISession {
 public:
     Session(boost::asio::ip::tcp::socket&& socket,
         std::weak_ptr<ISessionManager> sessionMgr,
@@ -24,20 +25,20 @@ public:
 
 
     void Start();
-    void Close();
-    void Send(uint16_t id, google::protobuf::Message& msg);
+    void Close() override;
+    void Send(uint16_t id, google::protobuf::Message& msg) override;
 
-    void SetPlayer(std::shared_ptr<Player> player);
-    std::shared_ptr<Player> GetPlayer(); 
-    std::string GetPlayerName();
-    void SetPlayerName(const std::string& name);
-    int32_t GetPlayerId();
+    void SetPlayer(std::shared_ptr<Player> player) override;
+    std::shared_ptr<Player> GetPlayer() override;
+    std::string GetPlayerName() override;
+    void SetPlayerName(const std::string& name) override;
+    int32_t GetPlayerId() override;
 
-    std::shared_ptr<GameRoom> GetRoom();
-    void SetRoom(std::weak_ptr<GameRoom> gameRoom);
+    std::shared_ptr<GameRoom> GetRoom() override;
+    void SetRoom(std::weak_ptr<GameRoom> gameRoom) override;
 
-    std::string GetSessionKey() const { return sessionKey_; }
-    void SetSessionKey(const std::string& key) { sessionKey_ = key; }
+    std::string GetSessionKey() override { return sessionKey_; }
+    void SetSessionKey(const std::string& key) override { sessionKey_ = key; }
 
 private:
     void DoRead();

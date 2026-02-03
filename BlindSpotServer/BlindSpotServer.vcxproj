@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Bot\BotSession.cpp" />
     <ClCompile Include="Managers\AuthManager.cpp" />
     <ClCompile Include="Managers\RoomManager.cpp" />
     <ClCompile Include="Managers\SessionManager.cpp" />
@@ -143,7 +144,9 @@
     <ClCompile Include="Services\RoomService.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Bot\BotSession.h" />
     <ClInclude Include="Core\Interfaces\IAuthManager.h" />
+    <ClInclude Include="Core\Interfaces\ISession.h" />
     <ClInclude Include="Core\Interfaces\IPlayerManager.h" />
     <ClInclude Include="Core\Interfaces\IRoomManager.h" />
     <ClInclude Include="Core\Interfaces\ISessionManager.h" />

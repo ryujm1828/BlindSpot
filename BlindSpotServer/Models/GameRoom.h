@@ -6,7 +6,7 @@
 #include <google/protobuf/message.h>
 #include <atomic>
 
-class Session;
+class ISession;
 
 class GameRoom : public std::enable_shared_from_this<GameRoom> {
 public:
@@ -17,8 +17,8 @@ public:
 		this->password_ = password;
 		this->ownerId_ = ownerId;
 	}
-	void Enter(std::shared_ptr<Session> session);
-	void Leave(std::shared_ptr<Session> session);
+	void Enter(std::shared_ptr<ISession> session);
+	void Leave(std::shared_ptr<ISession> session);
 	void Broadcast(uint16_t id, google::protobuf::Message& msg);
 
 private:
@@ -28,5 +28,5 @@ private:
 	int32_t ownerId_;
 	std::string password_;
 	std::mutex mutex_;
-	std::vector<std::shared_ptr<Session>> sessions_; // Active sessions in the game room
+	std::vector<std::shared_ptr<ISession>> sessions_; // Active sessions in the game room
 };

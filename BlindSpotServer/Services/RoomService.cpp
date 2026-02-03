@@ -2,12 +2,13 @@
 #include "../Network/Session.h"
 #include "../Managers/RoomManager.h"
 #include "../Core/Interfaces/IRoomManager.h"
+#include "../Core/Interfaces/ISession.h"
 
 RoomService::RoomService(std::shared_ptr<IRoomManager> roomMgr)
 	:roomMgr_(roomMgr) {
 }
 
-void RoomService::JoinRoom(std::shared_ptr<Session> session, blindspot::C_JoinRoom& pkt) {
+void RoomService::JoinRoom(std::shared_ptr<ISession> session, blindspot::C_JoinRoom& pkt) {
 	if (session->GetRoom()) {
 		// Already in a room
 		blindspot::S_JoinRoom res;
@@ -38,7 +39,7 @@ void RoomService::JoinRoom(std::shared_ptr<Session> session, blindspot::C_JoinRo
 	std::cout << "[Room] Player joined room ID: " << room_Id << std::endl;
 }
 
-void RoomService::MakeRoom(std::shared_ptr<Session> session, blindspot::C_MakeRoom& pkt) {
+void RoomService::MakeRoom(std::shared_ptr<ISession> session, blindspot::C_MakeRoom& pkt) {
 	if (session->GetRoom()) {
 		// Already in a room
 		blindspot::S_MakeRoom res;

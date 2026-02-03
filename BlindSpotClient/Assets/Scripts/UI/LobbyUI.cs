@@ -1,15 +1,15 @@
 ﻿using UnityEngine;
-using UnityEngine.UI; // InputField, Button용
+using UnityEngine.UI;
 
 public class LobbyUI : MonoBehaviour
 {
     [Header("UI References")]
-    public InputField roomInput; // 방 번호 입력칸
-    public Button joinButton;    // 입장 버튼
+    public InputField roomInput; // roomId
+    public Button joinButton;    
     public InputField roomNameInput;
     public InputField passwordInput;
     public InputField maxPlayersInput;
-    public Button makeButton;    // 입장 버튼
+    public Button makeButton;
     void Start()
     {
         // 버튼 클릭 시 실행될 함수 연결
